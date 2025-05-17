@@ -29,7 +29,7 @@ function page() {
   return (
     <Layout>
 
-        <DataTable columns={columns} data={data}/>
+        <DataTable columns={columns} data={data} pagnation={true}/>
     </Layout>
   )
 }

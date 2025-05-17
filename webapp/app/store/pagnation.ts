@@ -13,7 +13,7 @@ const GridBody = create<gridBody>()(
       body: {
         page: 1,
         pageSize: 10,
-        total:10,
+        total:100,
         searchTerm: "",
       },
       updateFieldBody: (key, value) =>
