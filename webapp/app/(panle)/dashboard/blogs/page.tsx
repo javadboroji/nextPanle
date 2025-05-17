@@ -1,9 +1,8 @@
 import React from 'react'
-import Layout from './Layout'
 
 function page() {
   return (
-    <Layout>page</Layout>
+    <div>blogs</div>
   )
 }
 

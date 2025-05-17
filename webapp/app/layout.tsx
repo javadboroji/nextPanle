@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={` antialiased h-[100dvh]`}
+        className={`antialiased h-[100dvh] w-full`}
       >
         {children}
       </body>
