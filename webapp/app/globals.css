@@ -42,7 +42,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
-
+var 
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -119,4 +119,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+@font-face {
+  font-family: 'IranSans';
+  src: url('../public/IranSans/IRANSansWeb.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+body{
+  font-family: 'IranSans' , sans-serif;
 }
