@@ -2,6 +2,7 @@
 import DataTable from '@/components/DataTable/DataTable'
 import ModalLayout from '@/components/Modal/Modal'
 import React, { useState } from 'react'
+import Layout from './Layout'
 
 function page() {
  const data=[{ key: '1', name: 'Ali', age: 25 } ,{ key: '2', name: 'Ali', age: 25 },{ key: '13', name: 'Ali', age: 25 },{ key: '4', name: 'Ali', age: 25 }]
@@ -12,11 +13,11 @@ function page() {
   ];
   const [open, setOpen] = useState(false)
   return (
-    <div> 
+    <Layout> 
       <DataTable  columns={columns} data={data} />
       <button onClick={()=>setOpen(true)}>Open</button>
       <ModalLayout open={open} setOpen={setOpen}> <p> Test</p></ModalLayout>
-    </div>
+    </Layout>
   )
 }
 
