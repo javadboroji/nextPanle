@@ -5,12 +5,14 @@ import React, { useState } from 'react'
 import Layout from './Layout'
 import Uploader from '@/components/Uploader/Uploader'
 import Loading from '@/components/Loading/Loading'
-
+import { toast, Toaster } from "sonner"
 function page() {
  const [images, setImages] = useState("")
   return (
     <Layout> 
-      <Loading/>
+      <button className='' onClick={()=>toast("success")}> click Toast</button>
+      {/* <Loading/> */}
+      
     </Layout>
   )
 }
