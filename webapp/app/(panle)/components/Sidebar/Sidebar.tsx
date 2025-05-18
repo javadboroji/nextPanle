@@ -47,35 +47,35 @@ function Sidebar() {
         {
           id: "2",
           name: "مدیریت کاربران ",
-          link: "dashboard/users",
+          link: "/dashboard/users",
           icon: <FaUsers size={20} />,
           nested: false,
         },
         {
             id: "3",
             name: "مدیریت نقش ها ",
-            link: "dashboard/roles",
+            link: "/dashboard/roles",
             icon: <IoIosLock size={20} />,
             nested: false,
           },
           {
             id: "4",
             name: "مدیریت دسته بندی ها ",
-            link: "dashboard/category",
+            link: "/dashboard/category",
             icon: <MdDashboard size={20} />,
             nested: false,
           },
           {
             id: "5",
             name: "تنظیمات سایت",
-            link: "dashboard/setting",
+            link: "/dashboard/setting",
             icon: <IoIosSettings size={20} />,
             nested: false,
           },
         {
           id: "6",
           name: "مدیریت مطالب",
-          link: "dashboard/blogs",
+          link: "/dashboard/blogs",
           icon: <GrArticle size={20} />,
           nested: false,
         },
@@ -134,7 +134,7 @@ function Sidebar() {
                 <Link
                   href={menu.link}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg  hover:bg-custom-blue hover:text-white transition-all duration-200
-                    ${location === `/${menu.link}` ? 'bg-custom-blue text-white ' : ''}`}
+                    ${location === `${menu.link}` ? 'bg-custom-blue text-white ' : ''}`}
                 >
                   <span className="text-lg">{menu.icon}</span>
                   <span className="text-sm font-medium">{menu.name}</span>

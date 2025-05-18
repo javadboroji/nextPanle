@@ -1,9 +1,8 @@
 import React from "react";
-import Layout from "./Layout";
 import DataTable from "@/app/components/DataTable/DataTable";
-
+import layout from "./Layout"
 function page() {
-  return <Layout>tet</Layout>;
+  return <layout>tet</layout>;
 }
 
 export default page;
