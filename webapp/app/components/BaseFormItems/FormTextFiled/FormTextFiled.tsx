@@ -35,7 +35,7 @@ const FormTextFiled: React.FC<IProps> = ({
         type={type}
         placeholder={placeholder}
       />
-      {error && <p className="text-red-600">{error?.message}</p>}
+      {error && <p className="text-red-600 text-xs">{error?.message}</p>}
     </div>
   );
 };

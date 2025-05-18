@@ -12,17 +12,17 @@ function HeaderAction() {
   return (
     <div className={"flex  justify-between w-[95%]"}>
     <div className={"flex items-center"}>
-      <button className={" border-0 focus:outline-0 mx-2 hover:cursor-pointer"}>
+      <button className={" border-[1px] border-gray-100 rounded-full p-2 focus:outline-0 mx-2 hover:cursor-pointer hover:bg-custom-blue group"}>
         {" "}
-        <IoIosSettings  className='text-gray-300'  fontSize={24} />
+        <IoIosSettings  className='text-gray-300 group-hover:text-white'  fontSize={24} />
       </button>
-      <button className={" border-0 focus:outline-0 mx-2 hover:cursor-pointer"}>
+      <button className={" border-[1px] border-gray-100 rounded-full p-2 focus:outline-0 mx-2 hover:cursor-pointer hover:bg-custom-blue group/notifcation"}>
         {" "}
-        <IoIosNotifications className='text-gray-300'  fontSize={24} />
+        <IoIosNotifications className='text-gray-300 group-hover/notifcation:text-white'  fontSize={24} />
       </button>
-      <button className={" border-0 focus:outline-0 mx-2 hover:cursor-pointer"}>
+      <button className={" border-[1px] border-gray-100 rounded-full p-2 focus:outline-0 mx-2 hover:cursor-pointer hover:bg-custom-blue group/email"}>
         {" "}
-        <MdEmail className='text-gray-300'  fontSize={24} />
+        <MdEmail className='text-gray-300 group-hover/email:text-white'  fontSize={24} />
       </button>
     </div>  
    

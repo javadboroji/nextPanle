@@ -4,7 +4,7 @@ import HeaderAction from "./HeaderAction";
 
 function HeaderApp() {
   return (
-    <div className="border-b-1 border-gray-100 w-full h-16 flex ">
+    <div className="border-b-1 border-gray-100 w-full h-16 flex shadow-xl">
       {/* <div className={"flex-shrink flex bg-gray-bg items-center "}>
         <h2 className={"text-wihte text-xl px-20 "}> داشبورد</h2>
       </div> */}

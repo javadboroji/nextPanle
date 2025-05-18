@@ -124,17 +124,17 @@ function Sidebar() {
         );
       };
   return (
-    <aside className=" border-l-[1px] border-gray-100 min-h-[100dvh]  my-2  transition-all duration-300 ease-in-out">
+    <aside className=" border-l-[1px] border-gray-100 min-h-[100dvh]  my-2  transition-all duration-300 ease-in-out shadow-xl">
       <div className="p-4">
         <h1 className=" text-xl font-bold mb-6 px-2">پنل مدیریت</h1>
         <nav className="flex flex-col gap-1">
           {dashBoardItems.map((menu) => (
-            <div key={menu.id} className="group">
+            <div key={menu.id} className="group ]">
               {!menu.nested ? (
                 <Link
                   href={menu.link}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg  hover:bg-custom-blue hover:text-white transition-all duration-200
-                    ${location === `/${menu.link}` ? 'bg-custom-blue text-white' : ''}`}
+                    ${location === `/${menu.link}` ? 'bg-custom-blue text-white ' : ''}`}
                 >
                   <span className="text-lg">{menu.icon}</span>
                   <span className="text-sm font-medium">{menu.name}</span>

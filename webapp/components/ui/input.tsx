@@ -9,6 +9,7 @@ function Input({ className, iconButton, type, ...props }: CustomInputProps) {
   return (
     <div className="flex items-center relative w-full">
       <input
+      
         type={type}
         data-slot="input"
         className={cn(

@@ -11,7 +11,7 @@ function SearchDataTable() {
     }
   return (
     <div className='flex w-1/3 '>
-        <Input value={value} onChange={setValue} iconButton={ <button onClick={searchTable} className='absolute left-5 cursor-pointer'><CiSearch /></button> } placeholder='جستجو..'/>
+        <Input value={value}  iconButton={ <button onClick={searchTable} className='absolute left-5 cursor-pointer'><CiSearch /></button> } placeholder='جستجو..'/>
     </div>
   )
 }
