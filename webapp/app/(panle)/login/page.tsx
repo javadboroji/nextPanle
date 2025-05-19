@@ -7,7 +7,7 @@ import image from "@/public/grid-01.svg";
 import Link from "next/link";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { useLogin } from "../../Services/Login";
+import { useLogin } from "../Services/Login";
 
 interface Inputs {
   userName: string;
@@ -55,7 +55,7 @@ function page() {
               error={errors.password}
               classCu="mb-2 text-sm"
             />
-            <Link className="text-custom-blue text-sm my-2 mr-auto ml-0 flex justify-end" href={"/"}> رمز عبور را فراموش کرده اید ؟</Link>
+            <Link className="text-blue-600 text-sm my-2 mr-auto ml-0 flex justify-end" href={"/"}> رمز عبور را فراموش کرده اید ؟</Link>
             <button type="submit" className="hover:cursor-pointer w-full text-white bg-blue-500 block rounded-2xl p-3 my-4">
               {" "}
               ورود

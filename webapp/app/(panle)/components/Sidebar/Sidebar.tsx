@@ -1,17 +1,12 @@
 "use client"
 import React, { ReactNode, useState } from 'react';
 import { FaUsers } from "react-icons/fa";
-import { FaBlog } from "react-icons/fa";
-import { BiSolidCategory } from "react-icons/bi";
 import { CgComponents, CgWebsite } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
-import { CiLock } from "react-icons/ci";
 import { IoIosSettings } from "react-icons/io";
 import { GrArticle } from "react-icons/gr";
 import { IoIosLock } from "react-icons/io";
-
-import { TbReport } from "react-icons/tb"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 type menu = {
@@ -26,8 +21,6 @@ type menu = {
   type menusType = menu[];
 function Sidebar() {
     const location = usePathname();
-    console.log(location);
-    
     const [submenu, setSubmenu] = useState<string[]>([]);
     const dashBoardItems: menusType = [
         {
@@ -66,54 +59,30 @@ function Sidebar() {
             nested: false,
           },
           {
-            id: "5",
-            name: "تنظیمات سایت",
-            link: "/dashboard/setting",
-            icon: <IoIosSettings size={20} />,
+            id: "6",
+            name: "مدیریت مطالب",
+            link: "/dashboard/blogs",
+            icon: <GrArticle size={20} />,
             nested: false,
           },
-        {
-          id: "6",
-          name: "مدیریت مطالب",
-          link: "/dashboard/blogs",
-          icon: <GrArticle size={20} />,
-          nested: false,
-        },
+          {
+            id: "5",
+            name: "اطلاعات پایه ",
+            link: "",
+            icon: <IoIosSettings size={20} />,
+            nested: true,
+            child:[{
+              id: "5-1",
+              name: "تنظیمات",
+              link: "/dashboard/setting",
+              icon: <IoIosSettings size={20} />,
+              nested: true,
+  
+            }]
+          },
+      
  
-        // {
-        //   id: "7",
-        //   name: "کامپوننت ها",
-        //   link: "",
-        //   icon: <CgComponents size={20} />,
-        //   nested: true,
-        //   child: [
-        //     {
-        //       id: "c1-7",
-        //       name: "دکمه ها",
-        //       link: "/buttons",
-        //     },
-        //     {
-        //       id: "c2-7",
-        //       name: "فرم  ها",
-        //       link: "/forms",
-        //     },
-        //     {
-        //       id: "c3-7",
-        //       name: "اسلایدر ها",
-        //       link: "/slider",
-        //     },
-        //     {
-        //       id: "c4-7",
-        //       name: "مدال ها",
-        //       link: "/modals",
-        //     },
-        //     {
-        //       id: "c5-7",
-        //       name: "کارد ها",
-        //       link: "/cards",
-        //     },
-        //   ],
-        // },
+
       ];
     
       const toggleNestedMenu = (id: string) => {
@@ -125,16 +94,16 @@ function Sidebar() {
       };
   return (
     <aside className=" border-l-[1px] border-gray-100 min-h-[100dvh]  my-2  transition-all duration-300 ease-in-out shadow-xl">
-      <div className="p-4">
-        <h1 className=" text-xl font-bold mb-6 px-2">پنل مدیریت</h1>
+      <div className="flex flex-col">
+        <h1 className=" text-xl font-bold my-4 px-2 m-auto">پنل مدیریت</h1>
         <nav className="flex flex-col gap-1">
           {dashBoardItems.map((menu) => (
             <div key={menu.id} className="group ]">
               {!menu.nested ? (
                 <Link
                   href={menu.link}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg  hover:bg-custom-blue hover:text-white transition-all duration-200
-                    ${location === `${menu.link}` ? 'bg-custom-blue text-white ' : ''}`}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg   hover:text-blue-600 transition-all duration-200
+                    ${location === `${menu.link}` ? 'bg-blue-50 text-blue-600 ' : ''}`}
                 >
                   <span className="text-lg">{menu.icon}</span>
                   <span className="text-sm font-medium">{menu.name}</span>
@@ -143,8 +112,8 @@ function Sidebar() {
                 <>
                   <button
                     onClick={() => toggleNestedMenu(menu.id)}
-                    className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-blue-700 hover:text-white transition-all duration-200
-                      ${submenu.includes(menu.id) ? 'bg-blue-700 text-white' : ''}`}
+                    className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg  hover:bg-blue-50 hover:text-blue-600  transition-all duration-200
+                      ${submenu.includes(menu.id) ? '' : ''}`}
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-lg">{menu.icon}</span>
@@ -166,10 +135,10 @@ function Sidebar() {
                         <Link
                           key={child.id}
                           href={child.link}
-                          className={`flex items-center gap-2 px-4 py-2 mr-4 rounded-lg text-gray-300 hover:bg-blue-700/30 hover:text-white transition-all duration-200 text-sm
-                            ${location === `/${child.link}` ? 'bg-blue-700/40 text-white' : ''}`}
+                          className={`flex items-center gap-2 px-4 py-2 mr-4 rounded-lg   transition-all duration-200 text-sm
+                            ${location === `${child.link}` ? 'bg-blue-50 text-blue-600 ' : ''}`}
                         >
-                          <span className="w-1.5 h-1.5 bg-gray-400 rounded-full"></span>
+                          
                           {child.name}
                         </Link>
                       ))}
