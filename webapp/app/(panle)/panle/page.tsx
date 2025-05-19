@@ -11,6 +11,7 @@ import SheetC from '@/components/Sheet/SheetC'
 import { SheetTrigger } from '@/components/ui/sheet'
 import { ITabComponent, ITabContent, ItabsTrigger } from '@/components/Tab/type'
 import TabComponent from '@/components/Tab/TabComponent'
+import Profile from './components/Sidebar/Profile/Profile'
 function page() {
     const tabsTrigger:ItabsTrigger[]=[
       {
@@ -53,6 +54,7 @@ function page() {
       <div className='flex items-center'>
         <TabComponent tabsTrigger={tabsTrigger} tabContent={tabsContent}/>
       </div>
+      <Profile/>
     </Layout>
   )
 }
