@@ -1,15 +1,17 @@
 "use client";
-import React from "react";
+import SheetLayout from "@/app/components/Sheet/SheetLayout";
+import React, { useState } from "react";
 import { IoIosSettings } from "react-icons/io";
 import { IoIosNotifications } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
-import { FaUserAlt } from "react-icons/fa";
-import PopoverLayout from "@/app/components/popover/PopoverLayout";
+import UserProfile from "./UserProfile";
+
 function HeaderAction() {
   const user = {
     userName: "جواد بروجی",
     email: "javadboroji2222@gmail.com",
   };
+  const [open, setOpen] = useState(false)
   return (
     <div className={"flex items-center  justify-between w-[95%]"}>
       <div className={"flex items-center"}>
@@ -25,6 +27,7 @@ function HeaderAction() {
           />
         </button>
         <button
+        onClick={()=>setOpen(true)}
           className={
             " border-[1px] border-gray-100 rounded-full p-2 focus:outline-0 mx-2 hover:cursor-pointer hover:bg-custom-blue group/notifcation"
           }
@@ -47,18 +50,11 @@ function HeaderAction() {
           />
         </button>
       </div>
+        <UserProfile/>
 
-      <div className={"flex items-baseline "}>
-        <FaUserAlt className="text-gray-300 mt-2" size={18} />
-          <PopoverLayout label={user.userName}>
-            <ul>
-              <li> پروفایل </li>
-              <li> خروج </li>
-            </ul>
-          </PopoverLayout>
-          
-       
-      </div>
+     <SheetLayout open={open} setopen={setOpen} >
+          <h1> Notifcation ....</h1>
+     </SheetLayout>
     </div>
   );
 }
