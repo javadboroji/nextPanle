@@ -9,23 +9,49 @@ import { toast, Toaster } from "sonner"
 import Cbutton from '@/components/Button/Cbutton'
 import SheetC from '@/components/Sheet/SheetC'
 import { SheetTrigger } from '@/components/ui/sheet'
+import { ITabComponent, ITabContent, ItabsTrigger } from '@/components/Tab/type'
+import TabComponent from '@/components/Tab/TabComponent'
 function page() {
-  const [open, setOPen] = useState(false)
- const clickHandler=(data:any)=>{
-  setOPen(true)
-  
- }
+    const tabsTrigger:ItabsTrigger[]=[
+      {
+        label:"Account",
+        value:"account"
+      },
+      {
+        label:"Transaction",
+        value:"transaction"
+      },
+      {
+        label:"Setting",
+        value:"setting"
+      }
+    ]
+    const tabsContent:ITabContent[]=[{
+      value:"account",
+      children:<div>
+        <h1>Account</h1>
+      </div>
+
+    },
+    {
+      value:"transaction",
+      children:<div>
+        <h1>Transaction</h1>
+      </div>
+    },
+    {
+      value:"setting",
+      children:<div>
+        <h1>Setting</h1>
+      </div>
+    }
+  ]
   return (
     <Layout> 
       <button className='' onClick={()=>toast("success")}> click Toast</button>
       {/* <Loading/> */}
       <div className='flex items-center'>
-      <Cbutton btnType='fill' onClick={()=>setOPen(true)}> Open</Cbutton>
-        
-      <SheetC open={open} setopen={setOPen}> 
-
-        <p> Testing </p>
-      </SheetC>
+        <TabComponent tabsTrigger={tabsTrigger} tabContent={tabsContent}/>
       </div>
     </Layout>
   )
