@@ -6,11 +6,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TSelectItem } from "@/types";
+import { ISelectItem } from "@/types";
 import { UseFormRegister } from "react-hook-form";
 
 interface IProps {
-  SelectItems: TSelectItem[];
+  SelectItems: ISelectItem[];
   placeholder?: string;
   name: string;
   classCu?: string;
@@ -32,7 +32,14 @@ const FormSelect: React.FC<IProps> = ({
         {...register(name)}
       >
         {SelectItems?.map((item) => {
-          return <option className="p-2 text-lg focus-visible:!border-gray-100 border-gray-50 hover:bg-gray-100" value={item.value}>{item.label}</option>;
+          return (
+            <option
+              className="p-2 text-lg focus-visible:!border-gray-100 border-gray-50 hover:bg-gray-100"
+              value={item.value}
+            >
+              {item.label}
+            </option>
+          );
         })}
       </select>
     </>

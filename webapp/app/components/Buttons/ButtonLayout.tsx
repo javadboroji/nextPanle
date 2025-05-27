@@ -4,6 +4,7 @@ interface ICbutton {
   btnType: "fill" | "outline" | "link";
   type?: "submit" | "reset" | "button";
   size?: "sm" | "md" | "lg";
+  customizseClass?:string
   onClick?: (data?: any) => void;
 }
 const ButtonLayout: React.FC<ICbutton> = ({
@@ -11,6 +12,7 @@ const ButtonLayout: React.FC<ICbutton> = ({
   btnType,
   type,
   size,
+  customizseClass,
   onClick,
 }) => {
   const renderbtnTypeClassName = () => {
@@ -43,7 +45,7 @@ const ButtonLayout: React.FC<ICbutton> = ({
       onClick={(data) => {
         if (onClick) onClick(data);
       }}
-      className={`hover:cursor-pointer  rounded-xl m-2    ${renderbtnTypeClassName()} ${renderSizeClassName()}`}
+      className={`hover:cursor-pointer  rounded-xl m-2    ${renderbtnTypeClassName()} ${renderSizeClassName()}  ${customizseClass}`}
     >
       {children}
     </button>

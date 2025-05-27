@@ -1,0 +1,18 @@
+"use client"
+import React from 'react'
+import ButtonLayout from '../Buttons/ButtonLayout'
+import { FaPlus } from "react-icons/fa6";
+interface TableHeaderButtonsProps{
+   addNewOnclick:()=>void
+}
+const TableHeaderButtons:React.FC<TableHeaderButtonsProps> =({addNewOnclick})=> {
+  return (
+    <div className='flex items-center'>
+        <ButtonLayout btnType='fill' size='md' customizseClass='!bg-[#465FFF] !rounded-[6px]' onClick={()=>addNewOnclick()}  >
+                <div className=' flex items-center'><FaPlus className='mx-2'/> <span> ایجاد کاربرجدید</span>  </div>
+        </ButtonLayout>
+    </div>
+  )
+}
+
+export default TableHeaderButtons

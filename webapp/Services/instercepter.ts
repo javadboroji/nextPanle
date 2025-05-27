@@ -16,7 +16,7 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    let errorStatus = error.response.status;
+    let errorStatus = error?.response?.status;
     if (errorStatus === 401) {
       window.location.href = "dashboard/login";
     }

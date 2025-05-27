@@ -4,12 +4,22 @@ import { cn } from "@/lib/utils";
 import { CiSearch } from "react-icons/ci";
 interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   iconButton?: React.ReactNode;
+  changeHandler: (e:React.ChangeEvent<HTMLInputElement>) => void;
+  value: string| number;
 }
-function Input({ className, iconButton, type, ...props }: CustomInputProps) {
+function Input({
+  className,
+  value,
+  iconButton,
+  changeHandler,
+  type,
+  ...props
+}: CustomInputProps) {
   return (
     <div className="flex items-center relative w-full">
       <input
-      
+        onChange={(e) => changeHandler(e)}
+        value={value}
         type={type}
         data-slot="input"
         className={cn(

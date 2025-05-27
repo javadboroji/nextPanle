@@ -14,23 +14,37 @@ type DataTableProps<T> = TableProps<T> & {
   rowSelect?: any;
   pagnation: boolean;
   setRowSelect?: React.Dispatch<React.SetStateAction<any>>;
+  headerCrudButton?:React.ReactNode
 };
 function DataTable<T extends object>({
   data,
   columns,
   setRowSelect,
   pagnation,
+  headerCrudButton
 }: DataTableProps<T>) {
   /*================================ Pagnation ==============================*/
   const { body, setBody } = useGridBody();
-
+  const columnWithRowCount =columns? [
+    {
+      title: "ردیف",
+      dataIndex: "index",
+      key: "index",
+      render: ( text: any, record: any, index: number) => index + 1,
+    },
+    ...columns,
+  ]:[];
   return (
     <AntProviderLayout>
       <div className="flex flex-col">
-        <SearchDataTable />
+        <div className="flex justify-between">
+        <SearchDataTable   />
+        {headerCrudButton&&headerCrudButton}
+        </div>
         <Table<T>
-          columns={columns}
+          columns={columnWithRowCount}
           dataSource={data || []}
+          rowClassName={() => "custom-row"}
           onRow={
             setRowSelect
               ? (record, index) => {
