@@ -131,6 +131,12 @@ var
 body{
   font-family: 'IranSans' , sans-serif;
 }
+.custom-row {
+  height: 52px; /* ارتفاع دلخواه */
+}
+.ant-table-cell{
+  padding: 8px !important;
+}
 /* Loading spinner */
 .loader {
   width: 48px;

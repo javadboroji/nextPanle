@@ -1,9 +1,15 @@
-import React from 'react'
+
+import React from "react";
+import WrapUserPage from "./components/WrapUserPage";
 
 function page() {
+ 
+
   return (
-    <div>users</div>
-  )
+    <>
+      <WrapUserPage/> 
+    </>
+  );
 }
 
-export default page
+export default page;
