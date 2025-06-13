@@ -28,7 +28,7 @@ const FormSelect: React.FC<IProps> = ({
     <>
       {placeholder && <label htmlFor={name}>{placeholder}</label>}
       <select
-        className={`p-3  min-w-[10rem] border-[1px] mx-2 border-gray-200 rounded-[8px]  ${classCu}`}
+        className={`p-3 w-full  min-w-[10rem] border-[1px]   border-gray-200 rounded-[8px]  ${classCu}`}
         {...register(name)}
       >
         {SelectItems?.map((item) => {

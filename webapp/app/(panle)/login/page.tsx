@@ -5,18 +5,18 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import image from "@/public/grid-01.svg";
 import Link from "next/link";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useLogin } from "../Services/Login";
+import { useLogin } from "../Services/User";
 
 interface Inputs {
-  userName: string;
+  email: string;
   password: string;
 }
 const schema = yup.object({
-  userName: yup.string().required("نام کاربری اجباری می باشد"),
+  email: yup.string().required("ایمیل کاربری اجباری می باشد"),
   password: yup.string().required("پسورد   اجباری می باشد"),
-})
+});
 
 function page() {
   const {
@@ -24,8 +24,8 @@ function page() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>({resolver:yupResolver(schema)});
-  const{mutate}=  useLogin()
+  } = useForm<Inputs>({ resolver: yupResolver(schema) });
+  const { mutate } = useLogin();
   const onSubmit: SubmitHandler<Inputs> = (data) => mutate(data);
   return (
     <div className="flex   h-[100dvh]">
@@ -40,10 +40,10 @@ function page() {
             <span className="text-sm p-2"> نام کاربری</span>
             <FormTextFiled
               type="text"
-              name="userName"
+              name="email"
               placeholder="نام کاربری را وارد کنید"
               register={register}
-              error={errors.userName}
+              error={errors.email}
               classCu="mb-2 text-sm"
             />
             <span className="text-sm p-2"> رمز عبور </span>
@@ -55,8 +55,17 @@ function page() {
               error={errors.password}
               classCu="mb-2 text-sm"
             />
-            <Link className="text-blue-600 text-sm my-2 mr-auto ml-0 flex justify-end" href={"/"}> رمز عبور را فراموش کرده اید ؟</Link>
-            <button type="submit" className="hover:cursor-pointer w-full text-white bg-blue-500 block rounded-2xl p-3 my-4">
+            <Link
+              className="text-blue-600 text-sm my-2 mr-auto ml-0 flex justify-end"
+              href={"/"}
+            >
+              {" "}
+              رمز عبور را فراموش کرده اید ؟
+            </Link>
+            <button
+              type="submit"
+              className="hover:cursor-pointer w-full text-white bg-blue-500 block rounded-2xl p-3 my-4"
+            >
               {" "}
               ورود
             </button>

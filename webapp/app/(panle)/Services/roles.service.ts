@@ -13,7 +13,7 @@ const addRole = async (role: any) => {
 
 const getRoles = async () => {
   return await instance.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/roles/login`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/roles/get`,
     getAxiosConfig("json")
   );
 };
