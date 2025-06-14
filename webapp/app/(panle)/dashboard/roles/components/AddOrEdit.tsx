@@ -12,6 +12,7 @@ interface IAddOrEdit {
 
 interface IAddRoleInput {
   name: string;
+  title: string;
 }
 const AddOrEdit: React.FC<IAddOrEdit> = ({ open, setOpen }) => {
   const { mutate } = useAddRole();
@@ -25,14 +26,26 @@ const AddOrEdit: React.FC<IAddOrEdit> = ({ open, setOpen }) => {
   return (
     <ModalLayout open={open} setOpen={setOpen}>
       <form className="my-6" onSubmit={handleSubmit(onSubmit)}>
-        <FormTextFiled
-          type="text"
-          name="name"
-          placeholder="نام نقش"
-          register={register}
-          error={errors.name}
-          classCu="mb-2 text-sm w-1/3"
-        />
+        <div className="flex items-center">
+          <div className="w-1/2 px-1">
+            <FormTextFiled
+              type="text"
+              name="title"
+              placeholder="نام نقش"
+              register={register}
+              error={errors.name}
+            />
+          </div>
+          <div className="w-1/2 px-1">
+            <FormTextFiled
+              type="text"
+              name="name"
+              placeholder="نام انگلیسی"
+              register={register}
+              error={errors.name}
+            />
+          </div>
+        </div>
 
         <div className="flex justify-end">
           <button
