@@ -4,7 +4,11 @@ export interface IrequestBody {
   searchTerm: string;
   total: number;
 }
-
+export interface TRadioGroupItem {
+  id: string;
+  value: string;
+  Label: string;
+}
 export interface User {
   id: number;
   name: string;
@@ -27,4 +31,16 @@ export interface IRoles extends ICreateAndUpdate {
   id: number;
   title: string;
   name: string;
+}
+
+
+export interface IProduct{
+  id:number ,
+  title:string ,
+  count:number ,
+  price:number ,
+  isActive:boolean ,
+  description:string ,
+  image_url:string ,
+
 }

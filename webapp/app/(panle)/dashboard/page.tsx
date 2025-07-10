@@ -1,7 +1,8 @@
 import React from "react";
-import DataTable from "@/app/components/DataTable/DataTable";
 function page() {
-  return <>tet</>;
+  return <>
+      <h1> Dashboard</h1>
+  </>;
 }
 
 export default page;

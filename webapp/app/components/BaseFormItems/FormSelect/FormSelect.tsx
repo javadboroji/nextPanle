@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { ISelectItem } from "@/types";
 import { UseFormRegister } from "react-hook-form";
 
@@ -31,9 +25,10 @@ const FormSelect: React.FC<IProps> = ({
         className={`p-3 w-full  min-w-[10rem] border-[1px]   border-gray-200 rounded-[8px]  ${classCu}`}
         {...register(name)}
       >
-        {SelectItems?.map((item) => {
+        {SelectItems?.map((item, i: number) => {
           return (
             <option
+              key={`${item}-${i}`}
               className="p-2 text-lg focus-visible:!border-gray-100 border-gray-50 hover:bg-gray-100"
               value={item.value}
             >

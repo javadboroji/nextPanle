@@ -41,11 +41,14 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-custom-blue:#EBF1FE;
-  --color-custom-gray:#E8EBEF;
+  --color-custom-blue: #EBF1FE;
+  --color-custom-gray: #E8EBEF;
+  --color-midnight-ndigo: #172142;
+  --color-theme-dark: #101828;
+  --color-midnight-slate: #171F2E;
 }
-var 
-:root {
+
+var:root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -78,10 +81,11 @@ var
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #101828;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -112,31 +116,39 @@ var
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --midnightIndigo: #172142;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
+
 @font-face {
   font-family: 'IranSans';
   src: url('../public/IranSans/IRANSansWeb.ttf') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
-body{
-  font-family: 'IranSans' , sans-serif;
+
+body {
+  font-family: 'IranSans', sans-serif;
 }
+
 .custom-row {
-  height: 52px; /* ارتفاع دلخواه */
+  height: 52px;
+  /* ارتفاع دلخواه */
 }
-.ant-table-cell{
+
+.ant-table-cell {
   padding: 8px !important;
 }
+
 /* Loading spinner */
 .loader {
   width: 48px;
@@ -148,8 +160,9 @@ body{
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
+
 .loader::after {
-  content: '';  
+  content: '';
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -161,11 +174,23 @@ body{
   border-bottom: 4px solid transparent;
   animation: rotation 0.5s linear infinite reverse;
 }
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
-} 
+}
+
+/********************** <Table >************************/
+html.dark .ant-table-placeholder {
+  background: var(--color-theme-dark) !important;
+}
+
+html.dark .ant-table-cell ,html.dark .ant-empty-description {
+  background: var(--color-midnight-slate) !important;
+  color: var(--color-white) !important;
+}

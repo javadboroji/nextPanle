@@ -42,6 +42,7 @@ function DataTable<T extends object>({
         {headerCrudButton&&headerCrudButton}
         </div>
         <Table<T>
+          className=" dark:table-dark"
           columns={columnWithRowCount}
           dataSource={data || []}
           rowClassName={() => "custom-row"}

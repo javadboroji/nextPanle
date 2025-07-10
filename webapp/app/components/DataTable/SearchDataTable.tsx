@@ -4,17 +4,17 @@ import React, { useState } from 'react'
 import { CiSearch } from "react-icons/ci";
 
 function SearchDataTable() {
-    const [value, setValue] = useState("")
-    const searchTable=()=>{
-        console.log(value);
+    // const [value, setValue] = useState("")
+    // const searchTable=()=>{
+    //     console.log(value);
         
-    }
-    const changeHandler=(e:any)=>{
-      setValue(e.target.value)
-    }
+    // }
+    // const changeHandler=(e:any)=>{
+    //   setValue(e.target.value)
+    // }
   return (
     <div className='flex w-1/3 '>
-        <Input value={value} changeHandler={changeHandler}  iconButton={ <button onClick={searchTable} className='absolute left-5 cursor-pointer'><CiSearch /></button> } placeholder='جستجو..'/>
+        {/* <Input value={value} changeHandler={(e:any)=>changeHandler(e)}  iconButton={ <button onClick={searchTable} className='absolute left-5 cursor-pointer'><CiSearch /></button> } placeholder='جستجو..'/> */}
     </div>
   )
 }

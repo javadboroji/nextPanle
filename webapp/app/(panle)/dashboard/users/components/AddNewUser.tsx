@@ -1,13 +1,12 @@
 import ModalLayout from "@/app/components/Modal/ModalLayout";
-import { IRoles, User } from "@/types";
-import React, { useState } from "react";
+import { IRoles } from "@/types";
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import * as yup from "yup";
 import FormTextFiled from "@/app/components/BaseFormItems/FormTextFiled/FormTextFiled";
-import FormSelect from "@/app/components/BaseFormItems/FormSelect/FormSelect";
 import { useGetRoles } from "@/app/(panle)/Services/roles.service";
 import covertDataToselectOption from "@/app/helper/covertDataToselectOption";
 import { useRegister } from "@/app/(panle)/Services/User";
+import FormSelectAnt from "@/app/components/BaseFormItems/FormSelect/FormSelectAnt";
 
 
 interface adduserProps {
@@ -22,13 +21,13 @@ type addUserInputs = {
   password: string;
 };
 
-const schema = yup.object({
-  name: yup.string().required("نام کاربری اجباری می باشد"),
-  password: yup.string().required("پسورد   اجباری می باشد"),
-  role: yup.string().notRequired(),
-  status: yup.number().notRequired(),
-  email: yup.string().email().notRequired(),
-});
+// const schema = yup.object({
+//   name: yup.string().required("نام کاربری اجباری می باشد"),
+//   password: yup.string().required("پسورد   اجباری می باشد"),
+//   role: yup.string().notRequired(),
+//   status: yup.number().notRequired(),
+//   email: yup.string().email().notRequired(),
+// });
 
 const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
   const{data:roles}= useGetRoles();
@@ -37,7 +36,7 @@ const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
   const {
     register,
     handleSubmit,
-    watch,
+    control ,
     formState: { errors },
   } = useForm<addUserInputs>();
   const onSubmit: SubmitHandler<addUserInputs> = (data) => mutate(data);
@@ -68,10 +67,11 @@ const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
               />
             </div>
             <div className="w-1/2 px-1">
-              <FormSelect  
+              <FormSelectAnt  
                 name="role"
-                register={register}
-                classCu="mb-2"
+                //register={register}
+                control={control}
+                className="mb-2 p-4"
                 // placeholder="نقش"
                 SelectItems={roleOptions ??[]}
 

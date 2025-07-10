@@ -65,7 +65,7 @@ function WrapUserPage() {
         columns={columns}
         data={data?.data ?? []}
         pagnation={true}
-        headerCrudButton={<TableHeaderButtons addNewOnclick={createNewuser} />}
+        headerCrudButton={<TableHeaderButtons lable="ایجاد کاربر جدید" addNewOnclick={createNewuser} />}
       />
 
       <AddNewUser open={open} setOpen={setOpen} />

@@ -4,7 +4,7 @@ import HeaderApp from "../components/HeaderApp/HeaderApp";
 interface LayoutProps {
   children: React.ReactNode;
 }
-const layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex w-full">
       <div className="w-[16rem]">
@@ -18,4 +18,4 @@ const layout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export default layout;
+export default Layout;
