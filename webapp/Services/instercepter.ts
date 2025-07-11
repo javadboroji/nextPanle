@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import nookies from "nookies";
 const instance = axios.create({
   headers: {
     "Content-Type": "application/json",
@@ -8,7 +7,10 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  config.headers.authorization = "1234";
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 instance.interceptors.response.use(
@@ -16,9 +18,9 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    let errorStatus = error?.response?.status;
+    const errorStatus = error?.response?.status;
     if (errorStatus === 401) {
-      window.location.href = "dashboard/login";
+      window.location.href = "/login";
     }
     return Promise.reject(error);
   }
