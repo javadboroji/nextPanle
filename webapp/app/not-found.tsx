@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
 import image from "@/public/404.svg"
-import ButtonFill from './components/Buttons/ButtonFill'
 import Link from 'next/link'
 function NotFound() {
   return (

@@ -40,7 +40,8 @@ export const useLogin = () => {
         style: toastColor("sucess"),
       });
       const token = res.data.data.token;
-      localStorage.setItem("token", token)
+      //localStorage.setItem("token", token)
+      document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24}`;  
       router.push("/dashboard");
     },
     onError: (error) => {

@@ -7,7 +7,10 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("token="))
+    ?.split("=")[1];
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -21,6 +24,9 @@ instance.interceptors.response.use(
     const errorStatus = error?.response?.status;
     if (errorStatus === 401) {
       window.location.href = "/login";
+    }
+    if (errorStatus === 403) {
+      window.location.href = "/dashboard/403";
     }
     return Promise.reject(error);
   }

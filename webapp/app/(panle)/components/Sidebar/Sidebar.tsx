@@ -12,6 +12,7 @@ import { BsCardChecklist } from "react-icons/bs";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { getAuthClient } from '@/lib/auth';
 type menu = {
   id: string;
   name: string;
@@ -19,12 +20,15 @@ type menu = {
   icon?: ReactNode;
   nested?: boolean;
   child?: menu[];
+  auth: boolean
 };
 
 type menusType = menu[];
 function Sidebar() {
   const location = usePathname();
   const [submenu, setSubmenu] = useState<string[]>([]);
+  const role = getAuthClient();
+
   const dashBoardItems: menusType = [
     {
       id: "1",
@@ -32,6 +36,7 @@ function Sidebar() {
       link: "/",
       icon: <CgWebsite size={20} />,
       nested: false,
+      auth: true
     },
     {
       id: "11",
@@ -39,6 +44,7 @@ function Sidebar() {
       link: "dashboard",
       icon: <MdDashboard size={20} />,
       nested: false,
+      auth: role.includes("admin")
     },
     {
       id: "2",
@@ -46,6 +52,7 @@ function Sidebar() {
       link: "/dashboard/users",
       icon: <FaUsers size={20} />,
       nested: false,
+      auth: role.includes("admin")
     },
     {
       id: "3",
@@ -53,6 +60,7 @@ function Sidebar() {
       link: "/dashboard/roles",
       icon: <IoIosLock size={20} />,
       nested: false,
+      auth: role.includes("admin")
     },
     {
       id: "4",
@@ -60,6 +68,7 @@ function Sidebar() {
       link: "/dashboard/category",
       icon: <MdDashboard size={20} />,
       nested: false,
+      auth: role.some(r => ["admin", "writer", "user"].includes(r))
     },
     {
       id: "6",
@@ -67,6 +76,8 @@ function Sidebar() {
       link: "/dashboard/blogs",
       icon: <GrArticle size={20} />,
       nested: false,
+      auth: role.some(r => ["admin", "writer", "user"].includes(r))
+
     },
     {
       id: "5",
@@ -74,13 +85,15 @@ function Sidebar() {
       link: "",
       icon: <IoIosSettings size={20} />,
       nested: true,
+      auth: role.some(r => ["admin"].includes(r)),
+
       child: [{
         id: "5-1",
         name: "تنظیمات",
         link: "/dashboard/setting",
         icon: <IoIosSettings size={20} />,
         nested: true,
-
+        auth: role.some(r => ["admin"].includes(r)),
       }]
     },
     {
@@ -89,12 +102,14 @@ function Sidebar() {
       link: "",
       icon: <MdOutlineProductionQuantityLimits size={20} />,
       nested: true,
+      auth: role.some(r => ["admin"].includes(r)),
       child: [{
         id: "7-1",
         name: "لیست محصولات ",
         link: "/dashboard/products",
         icon: <BsCardChecklist size={20} />,
         nested: true,
+        auth: role.some(r => ["admin"].includes(r)),
 
       }]
     },
@@ -117,7 +132,7 @@ function Sidebar() {
         <nav className="flex flex-col gap-1">
           {dashBoardItems.map((menu) => (
             <div key={menu.id} className="group ]">
-              {!menu.nested ? (
+              {!menu.nested && menu.auth ? (
                 <Link
                   href={menu.link}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg   hover:text-blue-600 transition-all duration-200
@@ -126,7 +141,7 @@ function Sidebar() {
                   <span className="text-lg">{menu.icon}</span>
                   <span className="text-sm font-medium">{menu.name}</span>
                 </Link>
-              ) : (
+              ) :menu.auth&& (
                 <>
                   <button
                     onClick={() => toggleNestedMenu(menu.id)}
@@ -149,7 +164,7 @@ function Sidebar() {
                   >
                     <div className="pr-4 py-1">
                       {menu.child?.map((child) => (
-                        <Link
+                       child.auth&& <Link
                           key={child.id}
                           href={child.link}
                           className={`flex items-center gap-2 px-4 py-2 mr-4 rounded-lg   transition-all duration-200 text-sm
