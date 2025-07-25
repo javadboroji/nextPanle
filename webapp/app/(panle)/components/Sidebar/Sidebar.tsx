@@ -47,6 +47,14 @@ function Sidebar() {
       auth: role.includes("admin")
     },
     {
+      id:"123",
+      name: "کارها",
+      link: "/dashboard/tasks",
+      icon: <MdDashboard size={20} />,
+      nested: false,
+      auth: role.includes("admin")
+    },
+    {
       id: "2",
       name: "مدیریت کاربران ",
       link: "/dashboard/users",

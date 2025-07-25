@@ -8,10 +8,15 @@ import useGridBody from "@/app/hooks/useGridBody";
 import { Tag } from "antd";
 import dayjs from "dayjs";
 import jalaliday from "jalaliday";
+import columnAction from "@/app/helper/columnnAction";
+import { ColumnType } from "antd/es/table";
+import { Iuser } from "../types";
 
 function WrapUserPage() {
   dayjs.extend(jalaliday);
-  const columns = [
+
+  const editColumn =(record:any)=>{}
+  const columns:ColumnType<Iuser> = [
     {
       title: "ایمیل",
       dataIndex: "email",
@@ -26,7 +31,8 @@ function WrapUserPage() {
       title: "تاریخ عضویت",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (date: string) =>  dayjs(date).calendar("jalali").format("YYYY/MM/DD"),
+      
+      render: (date: string) => dayjs(date).calendar("jalali").format("YYYY/MM/DD"),
     },
     {
       title: "نقش",
@@ -43,11 +49,12 @@ function WrapUserPage() {
         </Tag>
       ),
     },
+    columnAction({ action: ["edit"] })
   ];
-  
+
   const [open, setOpen] = useState(false);
-  const { body ,setBody } = useGridBody();
-  const { data  } = useGetAllUsers(body);
+  const { body, setBody } = useGridBody();
+  const { data } = useGetAllUsers(body);
   const createNewuser = () => {
     setOpen(true);
   };
@@ -56,9 +63,9 @@ function WrapUserPage() {
     if (data && data.totalDatas !== body.total) {
       setBody("total", data.totalDatas);
     }
-    
+
   }, [data])
-  
+
   return (
     <>
       <DataTable

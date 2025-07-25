@@ -139,7 +139,9 @@ var:root {
 body {
   font-family: 'IranSans', sans-serif;
 }
-
+button:hover{
+  cursor: pointer;
+}
 .custom-row {
   height: 52px;
   /* ارتفاع دلخواه */
