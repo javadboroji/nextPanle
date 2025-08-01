@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ConfigProvider, Table, TableProps } from "antd";
+import {  Table, TableProps } from "antd";
 import useGridBody from "@/app/hooks/useGridBody";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import AntProviderLayout from "../AntProviderLayout";
@@ -48,8 +48,8 @@ function DataTable<T extends object>({
           rowClassName={() => "custom-row"}
           onRow={
             setRowSelect
-              ? (record, index) => {
-                  return { onClick: (event) => setRowSelect(record) };
+              ? (record, ) => {
+                  return { onClick: () => setRowSelect(record) };
                 }
               : undefined
           }

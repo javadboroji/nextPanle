@@ -31,19 +31,18 @@ const DragTask: React.FC<IDragTask> = ({ item }) => {
     boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
     padding: '10px',
     marginBottom: '10px',
-    backgroundColor: '#fff',
     cursor: 'grab',
   };
   return (
-    <div className='shadow-xl p-2 my-1 flex w-full flex-col ' key={item.id} ref={setNodeRef} {...listeners} {...attributes} style={style}>
+    <div className='dark:bg-midnight-slate  shadow-xl border-[1px] border-gray-100   p-2  rounded-[8px] mx-auto my-1 flex w-11/12 flex-col ' key={item.id} ref={setNodeRef} {...listeners} {...attributes} style={style}>
       <div className='flex justify-between w-full'>
-        <p> {item.title}</p>
+        <p className='text-sm'> {item.title}</p>
         <Image src={avatar} alt='avatar' className='w-8 h-8 rounded-full object-contain' width={10} height={10} />
       </div>
-      <div className='flex justify-between'>
+      <div className='flex justify-between mt-1'>
         <div className='flex items-center'>
-          <CiCalendarDate />
-          <span className='text-sm'>{item.date}</span>
+          <CiCalendarDate size={24} className='me-1'/>
+          <span className='text-xs'>{item.date}</span>
         </div>
       </div>
     </div>

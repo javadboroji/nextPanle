@@ -1,10 +1,11 @@
+import clsx from "clsx";
 import React from "react";
 interface ICbutton {
   children: React.ReactNode;
   btnType: "fill" | "outline" | "link";
   type?: "submit" | "reset" | "button";
   size?: "sm" | "md" | "lg";
-  customizseClass?:string
+  customizseClass?: string
   onClick?: (data?: any) => void;
 }
 const ButtonLayout: React.FC<ICbutton> = ({
@@ -20,7 +21,7 @@ const ButtonLayout: React.FC<ICbutton> = ({
       case "fill":
         return "bg-blue-500 text-white";
       case "outline":
-        return "bg-white border-[1px] border-blue-500 text-blue-500";
+        return "bg-white dark:bg-midnight-slate  border-[1px] border-blue-500 text-blue-500";
       case "link":
         return "text-blue-500";
       default:
@@ -45,7 +46,7 @@ const ButtonLayout: React.FC<ICbutton> = ({
       onClick={(data) => {
         if (onClick) onClick(data);
       }}
-      className={`hover:cursor-pointer  rounded-xl m-2    ${renderbtnTypeClassName()} ${renderSizeClassName()}  ${customizseClass}`}
+      className={clsx('hover:cursor-pointer  rounded-xl m-2', renderbtnTypeClassName(), renderSizeClassName(), customizseClass)}
     >
       {children}
     </button>

@@ -7,4 +7,4 @@ export interface Iuser {
     createdAt:string,
     updatedAt:string
 }
-const TUerTable=<Omit >
+//const TUerTable=<Omit >

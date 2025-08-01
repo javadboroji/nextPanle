@@ -15,7 +15,9 @@ import { Iuser } from "../types";
 function WrapUserPage() {
   dayjs.extend(jalaliday);
 
-  const editColumn =(record:any)=>{}
+
+
+
   const columns:ColumnType<Iuser> = [
     {
       title: "ایمیل",
