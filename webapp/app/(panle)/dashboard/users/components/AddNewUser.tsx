@@ -37,7 +37,7 @@ const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
 
   const { mutate } = useRegister()
 
-  const roleOptions = covertDataToselectOption<IRoles>(roles?.data?.data ?? [], r => r.title, r => r.id)
+  const roleOptions = covertDataToselectOption<IRoles>(roles?.data?.data ?? [], r => r.persionName, r => r.id)
 
   const {
     register,
@@ -102,13 +102,15 @@ const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="hover:cursor-pointer w-full text-white bg-blue-500 block rounded-2xl p-3 my-4"
-          >
-            {" "}
-            ثبت
-          </button>
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              className="hover:cursor-pointer min-w-2.5 text-white bg-blue-500 block rounded-2xl px-8 py-3 my-4"
+            >
+              {" "}
+              ثبت
+            </button>
+          </div>
         </form>
       </ModalLayout>
     </div>

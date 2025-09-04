@@ -9,14 +9,14 @@ import { toast } from "sonner"
 
 const login = async (user: any) => {
   return await instance.post(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
     user,
     getAxiosConfig("json")
   );
 };
 const register = async (user: userRegister) => {
   return await instance.post(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/register`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/createNewUser`,
     user,
     getAxiosConfig("json")
   );
@@ -25,7 +25,7 @@ const register = async (user: userRegister) => {
 const getAllUser = async ({ queryKey }: { queryKey: [string, IrequestBody] }) => {
   const [, requestBody] = queryKey;
   return await instance.post(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/users/getAll`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/getAllUsers`,
     requestBody,
     getAxiosConfig("json")
   );
@@ -41,7 +41,7 @@ export const useLogin = () => {
       });
       const token = res.data.data.token;
       //localStorage.setItem("token", token)
-      document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24}`;  
+      document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24}`;
       router.push("/dashboard");
     },
     onError: (error) => {
@@ -72,8 +72,7 @@ export const useGetAllUsers = (requestBody: IrequestBody) => {
   return useQuery({
     queryKey: ["users", requestBody],
     queryFn: getAllUser,
-
-    select: (data: any) => data.data.data,
+    select: (data: any) => data.data,
 
 
 

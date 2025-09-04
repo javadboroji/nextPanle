@@ -31,6 +31,7 @@ export interface IRoles extends ICreateAndUpdate {
   id: number;
   title: string;
   name: string;
+  persionName:string
 }
 
 

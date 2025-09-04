@@ -3,7 +3,7 @@ export interface Iuser {
     name:string,
     email: string,
     role: string,
-    status: boolean,
+    active: boolean,
     createdAt:string,
     updatedAt:string
 }

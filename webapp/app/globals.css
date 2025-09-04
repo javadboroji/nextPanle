@@ -197,6 +197,9 @@ html.dark .ant-empty-description {
   background: var(--color-midnight-slate) !important;
   color: var(--color-white) !important;
 }
+.ant-table-cell::before{
+  display: none;
+}
 
 /********************** <Modal >************************/
 html.dark .ant-modal-content {

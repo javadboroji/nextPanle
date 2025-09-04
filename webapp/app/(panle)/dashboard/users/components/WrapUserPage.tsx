@@ -14,11 +14,7 @@ import { Iuser } from "../types";
 
 function WrapUserPage() {
   dayjs.extend(jalaliday);
-
-
-
-
-  const columns:ColumnType<Iuser> = [
+  const columns:ColumnType<Iuser> []= [
     {
       title: "ایمیل",
       dataIndex: "email",
@@ -38,16 +34,16 @@ function WrapUserPage() {
     },
     {
       title: "نقش",
-      dataIndex: "role",
-      key: "role",
+      dataIndex: "role.persionName",
+      key: "role.persionName",
     },
     {
       title: "وضعیت",
-      dataIndex: "status",
-      key: "status",
-      render: (status: boolean) => (
-        <Tag color={status ? "green" : "red"}>
-          {status ? "فعال" : "غیرفعال"}
+      dataIndex: "active",
+      key: "active",
+      render: (active: boolean) => (
+        <Tag color={active ? "green" : "red"}>
+          {active ? "فعال" : "غیرفعال"}
         </Tag>
       ),
     },

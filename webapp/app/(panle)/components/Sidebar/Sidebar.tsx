@@ -34,7 +34,7 @@ function Sidebar() {
       id: "1",
       name: "وب سایت",
       link: "/",
-      icon: <CgWebsite size={20} />,
+      icon: <CgWebsite size={24} />,
       nested: false,
       auth: true
     },
@@ -42,82 +42,82 @@ function Sidebar() {
       id: "11",
       name: "داشبورد",
       link: "dashboard",
-      icon: <MdDashboard size={20} />,
+      icon: <MdDashboard size={24} />,
       nested: false,
-      auth: role.includes("admin")
+      auth: role?.includes("admin")
     },
     {
       id:"123",
       name: "کارها",
       link: "/dashboard/tasks",
-      icon: <MdDashboard size={20} />,
+      icon: <MdDashboard size={24} />,
       nested: false,
-      auth: role.includes("admin")
+      auth: role?.includes("admin")
     },
     {
       id: "2",
       name: "مدیریت کاربران ",
       link: "/dashboard/users",
-      icon: <FaUsers size={20} />,
+      icon: <FaUsers size={24} />,
       nested: false,
-      auth: role.includes("admin")
+      auth: role?.includes("admin")
     },
     {
       id: "3",
       name: "مدیریت نقش ها ",
       link: "/dashboard/roles",
-      icon: <IoIosLock size={20} />,
+      icon: <IoIosLock size={24} />,
       nested: false,
-      auth: role.includes("admin")
+      auth: role?.includes("admin")
     },
     {
       id: "4",
       name: "مدیریت دسته بندی ها ",
       link: "/dashboard/category",
-      icon: <MdDashboard size={20} />,
+      icon: <MdDashboard size={24} />,
       nested: false,
-      auth: role.some(r => ["admin", "writer", "user"].includes(r))
+      auth: role?.some(r => ["admin", "writer", "user"].includes(r))
     },
     {
       id: "6",
       name: "مدیریت مطالب",
       link: "/dashboard/blogs",
-      icon: <GrArticle size={20} />,
+      icon: <GrArticle size={24} />,
       nested: false,
-      auth: role.some(r => ["admin", "writer", "user"].includes(r))
+      auth: role?.some(r => ["admin", "writer", "user"].includes(r))
 
     },
     {
       id: "5",
       name: "اطلاعات پایه ",
       link: "",
-      icon: <IoIosSettings size={20} />,
+      icon: <IoIosSettings size={24} />,
       nested: true,
-      auth: role.some(r => ["admin"].includes(r)),
+      auth: role?.some(r => ["admin"].includes(r)),
 
       child: [{
         id: "5-1",
         name: "تنظیمات",
         link: "/dashboard/setting",
-        icon: <IoIosSettings size={20} />,
+        icon: <IoIosSettings size={24} />,
         nested: true,
-        auth: role.some(r => ["admin"].includes(r)),
+        auth: role?.some(r => ["admin"].includes(r)),
       }]
     },
     {
       id: "7",
       name: " محصولات  ",
       link: "",
-      icon: <MdOutlineProductionQuantityLimits size={20} />,
+      icon: <MdOutlineProductionQuantityLimits size={24} />,
       nested: true,
-      auth: role.some(r => ["admin"].includes(r)),
+      auth: role?.some(r => ["admin"].includes(r)),
       child: [{
         id: "7-1",
         name: "لیست محصولات ",
         link: "/dashboard/products",
-        icon: <BsCardChecklist size={20} />,
+        icon: <BsCardChecklist size={24} />,
         nested: true,
-        auth: role.some(r => ["admin"].includes(r)),
+        auth: role?.some(r => ["admin"].includes(r)),
 
       }]
     },
@@ -146,8 +146,8 @@ function Sidebar() {
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg   hover:text-blue-600 transition-all duration-200
                     ${location === `${menu.link}` ? 'bg-blue-50 text-blue-600 dark:bg-midnight-ndigo ' : ''}`}
                 >
-                  <span className="text-lg">{menu.icon}</span>
-                  <span className="text-sm font-medium">{menu.name}</span>
+                  <span className="text-2xl">{menu.icon}</span>
+                  <span className="text-xl font-medium">{menu.name}</span>
                 </Link>
               ) :menu.auth&& (
                 <>

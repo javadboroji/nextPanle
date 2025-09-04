@@ -7,27 +7,27 @@ const useRoleContainer = () => {
   const [tableData, setTableData] = useState([]);
   const columns = [
     {
-      title: "نام نقش",
+      title: "نام انگلیسی",
       dataIndex: "title",
       key: "title",
     },
     {
-      title: "نام انگلیسی",
-      dataIndex: "name",
-      key: "name",
+      title: "نام نقش",
+      dataIndex: "persionName",
+      key: "persionName",
     },
   ];
   const showModal = () => {
     setOpen(true);
   };
   const { body } = useGridBody();
-  const { mutate, data } = useGetRoleWithPagnation();
+  const {  data } = useGetRoleWithPagnation(body);
+
+
+
 
   useEffect(() => {
-    mutate(body);
-  }, [body]);
-  useEffect(() => {
-    setTableData(data?.data.data.data);
+    setTableData(data?.data.data);
   }, [data]);
 
 

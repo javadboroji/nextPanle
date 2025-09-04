@@ -16,7 +16,7 @@ function WrapperRole() {
         columns={columns}
         data={tableData}
         pagnation={true}
-        headerCrudButton={<TableHeaderButtons addNewOnclick={showModal} />}
+        headerCrudButton={<TableHeaderButtons lable="اضافه کردن نقش جدید" addNewOnclick={showModal} />}
       />
       <AddOrEdit open={open} setOpen={setOpen} />
     </div>

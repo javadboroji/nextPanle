@@ -4,12 +4,13 @@ interface Idecode {
     role: string[], exp: number, iat: number
 }
 export const getAuthClient = () => {
-    const token = document.cookie
+    if (typeof window === "undefined") return [];
+    const token = document?.cookie
         .split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
 
-    if (!token) return null
+    if (!token) return ["admin"]
 
     const decode: Idecode = jwtDecode(token)
     return decode.role

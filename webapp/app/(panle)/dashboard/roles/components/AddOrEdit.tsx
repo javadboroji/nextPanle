@@ -11,7 +11,7 @@ interface IAddOrEdit {
 }
 
 interface IAddRoleInput {
-  name: string;
+  persionName: string;
   title: string;
 }
 const AddOrEdit: React.FC<IAddOrEdit> = ({ open, setOpen }) => {
@@ -22,7 +22,9 @@ const AddOrEdit: React.FC<IAddOrEdit> = ({ open, setOpen }) => {
     watch,
     formState: { errors },
   } = useForm<IAddRoleInput>();
-  const onSubmit: SubmitHandler<IAddRoleInput> = (data) => mutate(data);
+  const onSubmit: SubmitHandler<IAddRoleInput> = (data) => mutate(data, {
+    onSuccess: () => setOpen(false)
+  });
   return (
     <ModalLayout open={open} setOpen={setOpen}>
       <form className="my-6" onSubmit={handleSubmit(onSubmit)}>
@@ -30,19 +32,19 @@ const AddOrEdit: React.FC<IAddOrEdit> = ({ open, setOpen }) => {
           <div className="w-1/2 px-1">
             <FormTextFiled
               type="text"
-              name="title"
+              name="persionName"
               placeholder="نام نقش"
               register={register}
-              error={errors.name}
+              error={errors.persionName}
             />
           </div>
           <div className="w-1/2 px-1">
             <FormTextFiled
               type="text"
-              name="name"
+              name="title"
               placeholder="نام انگلیسی"
               register={register}
-              error={errors.name}
+              error={errors.title}
             />
           </div>
         </div>
