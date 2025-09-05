@@ -158,7 +158,7 @@ function Sidebar() {
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-lg">{menu.icon}</span>
-                      <span className="text-sm font-medium">{menu.name}</span>
+                      <span className="text-xl font-medium ">{menu.name}</span>
                     </div>
                     <IoIosArrowDown
                       className={`transform transition-transform duration-200 ${submenu.includes(menu.id) ? 'rotate-180' : ''
@@ -175,7 +175,7 @@ function Sidebar() {
                        child.auth&& <Link
                           key={child.id}
                           href={child.link}
-                          className={`flex items-center gap-2 px-4 py-2 mr-4 rounded-lg   transition-all duration-200 text-sm
+                          className={`flex items-center gap-2 px-4 py-2 mr-4 rounded-lg   transition-all duration-200 text-xl
                             ${location === `${child.link}` ? 'bg-blue-50 text-blue-600 dark:bg-midnight-ndigo  ' : ''}`}
                         >
 

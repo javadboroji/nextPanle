@@ -9,7 +9,7 @@ import { toast } from "sonner"
 
 const login = async (user: any) => {
   return await instance.post(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/user/login`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
     user,
     getAxiosConfig("json")
   );

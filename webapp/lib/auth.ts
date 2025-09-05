@@ -12,8 +12,9 @@ export const getAuthClient = () => {
 
     if (!token) return ["admin"]
 
-    const decode: Idecode = jwtDecode(token)
-    return decode.role
+    const decode: Idecode = jwtDecode(token);
+    const roles=[decode.role as any]
+    return roles
 
 }
 
