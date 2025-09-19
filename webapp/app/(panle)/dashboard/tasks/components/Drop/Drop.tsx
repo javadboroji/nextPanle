@@ -1,5 +1,5 @@
 "use client"
-import { useDroppable } from '@dnd-kit/core';
+import { DragOverlay, useDroppable } from '@dnd-kit/core';
 import { GoPlus } from "react-icons/go";
 import { CiFilter } from "react-icons/ci";
 import { IoMdMore } from "react-icons/io";
@@ -90,7 +90,7 @@ const DropZone: React.FC<IDropZone> = ({ accepts, id, title, color, textColor, t
             </div>
             <div className='w-full'>
                 {filterTasks?.map((task) => {
-                    return <Drag item={task} key={task.id} />
+                    return <Drag item={task} key={task.id} /> 
                 })}
             </div>
         </div>

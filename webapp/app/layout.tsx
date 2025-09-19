@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ReactQueryProvider from "./components/ReactQueryProvider";
 import { Toaster } from "sonner";
+import { RoleProvider } from "./(panle)/context/RoleContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body className={`antialiased h-[100dvh] w-full`}>
-        <ReactQueryProvider >{children}</ReactQueryProvider>
+        <ReactQueryProvider >
+          <RoleProvider> {children}</RoleProvider>
+        </ReactQueryProvider>
         <Toaster />
       </body>
     </html>

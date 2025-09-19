@@ -6,7 +6,12 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner"
-
+import { useRole } from "../context/RoleContext";
+import { jwtDecode } from "jwt-decode";
+interface Idecode {
+  id: string,
+  role: string[], exp: number, iat: number
+}
 const login = async (user: any) => {
   return await instance.post(
     `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
@@ -33,6 +38,7 @@ const getAllUser = async ({ queryKey }: { queryKey: [string, IrequestBody] }) =>
 /****************************Hocks************************************* */
 export const useLogin = () => {
   const router = useRouter();
+  const { setRole } = useRole()
   return useMutation<AxiosResponse<any>, Error, any, string[]>({
     mutationFn: login,
     onSuccess: (res) => {
@@ -40,8 +46,11 @@ export const useLogin = () => {
         style: toastColor("sucess"),
       });
       const token = res.data.data.token;
-      //localStorage.setItem("token", token)
+      //save token in cookie
       document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24}`;
+      //save Roles in context
+      const decode: Idecode = jwtDecode(token); 
+      setRole([decode.role as any])
       router.push("/dashboard");
     },
     onError: (error) => {
