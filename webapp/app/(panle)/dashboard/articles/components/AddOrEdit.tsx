@@ -3,8 +3,9 @@ import FormCheckBox from '@/app/components/BaseFormItems/FormCheckBox/FormCheckB
 import FormTextFiled from '@/app/components/BaseFormItems/FormTextFiled/FormTextFiled';
 import ModalLayout from '@/app/components/Modal/ModalLayout'
 import Uploader from '@/app/components/Uploader/Uploader';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
+import TinyEditore from './TinyEditore';
 
 interface AddOrEditProps {
     open: boolean,
@@ -17,25 +18,29 @@ interface IArticleForm {
     published: boolean
 }
 const AddOrEdit: React.FC<AddOrEditProps> = ({ open, setOpen }) => {
+    const editorRef = useRef(null);
     const [thumbnail, setThumbnail] = useState(null);
-    const{mutate}= useAddArticle()
+    const { mutate } = useAddArticle()
     const {
         register,
         handleSubmit,
         watch,
         control,
         formState: { errors },
-    } = useForm<IArticleForm>();
-    const onSubmit: SubmitHandler<IArticleForm> = (data) => mutate({...data ,thumbnail})
+    } = useForm<IArticleForm>({
+        defaultValues: {
+            title: "",
+            content: "",
+            published: false
+        }
+    });
+    const onSubmit: SubmitHandler<IArticleForm> = (data) => mutate({ ...data, content: editorRef.current.getContent(), thumbnail })
 
 
-    useEffect(() => {
-     console.log(thumbnail);
-     
-    }, [thumbnail])
-    
+
+
     return (
-        <ModalLayout open={open} setOpen={setOpen}>
+        <ModalLayout open={open} setOpen={setOpen} size='80%'>
 
 
             <form className="my-6" onSubmit={handleSubmit(onSubmit)}>
@@ -57,15 +62,10 @@ const AddOrEdit: React.FC<AddOrEditProps> = ({ open, setOpen }) => {
                         />
                     </div>
                     <div className="w-full px-1">
-                        <FormTextFiled
-                            type="text"
-                            name="content"
-                            placeholder=" متن "
-                            register={register}
-                            error={errors.content}
-                        />
+
+                        <TinyEditore editorRef={editorRef} />
                     </div>
-                    <div className='w-full'>
+                    <div className='w-full my-2'>
                         <Uploader setimagesUploaded={setThumbnail} />
                     </div>
                 </div>
