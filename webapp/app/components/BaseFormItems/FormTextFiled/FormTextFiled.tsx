@@ -1,3 +1,4 @@
+import { Typography } from "antd";
 import React from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 export interface errosForm {
@@ -27,6 +28,7 @@ const FormTextFiled: React.FC<IProps> = ({
 }) => {
   return (
     <div className="flex flex-col w-full relative py-3  ">
+        <Typography.Text className="!text-gray-400"> {placeholder}</Typography.Text>
       <input
         className={`border-[1px] bg-gray-50 focus-visible:outline-blue-200  
           dark:border-gray-700 dark:bg-midnight-ndigo dark:text-white dark:focus-visible:outline-blue-900  
@@ -37,7 +39,6 @@ const FormTextFiled: React.FC<IProps> = ({
         {...register(name, validation)}
         name={name}
         type={type}
-        placeholder={placeholder}
       />
       {error && <p className="text-red-600 text-xs absolute bottom-0 right-0">{error?.message}</p>}
     </div>

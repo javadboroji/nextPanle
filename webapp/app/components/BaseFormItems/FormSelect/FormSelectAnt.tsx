@@ -1,5 +1,5 @@
 import { ISelectItem } from '@/types';
-import { Select } from 'antd';
+import { Select, Typography } from 'antd';
 import React from 'react'
 import { Controller, FieldError, UseFormReturn } from 'react-hook-form';
 import { errosForm } from '../FormTextFiled/FormTextFiled';
@@ -27,6 +27,7 @@ const FormSelectAnt: React.FC<IProps> = ({
             control={control}
             render={({ field }) => (
                 <div className='relative py-3'>
+                    <Typography.Text className="!text-gray-400"> {placeholder}</Typography.Text>
                     <Select
                         {...field}
                         className={`w-full !h-[45px] ${className}`}
