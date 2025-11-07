@@ -1,5 +1,5 @@
 "use client"
-import { createContext, ReactNode, useContext, useState } from "react"
+import { createContext, ReactNode, useContext, useEffect, useState } from "react"
 
 interface RoleContextType {
     role: string[]
@@ -10,9 +10,22 @@ const RoleContext = createContext<RoleContextType | undefined>(undefined);
 
 
 export function RoleProvider({ children }: { children: ReactNode }) {
-    const [role, setRole] = useState<RolesTypes>(null)
-
-    return <RoleContext.Provider value={{ role, setRole }}>   {children}</RoleContext.Provider>
+    const [role, setRole] = useState<RolesTypes>([])
+    const setRoleLocalStorage = (roles: string[]) => {
+        setRole(roles)
+        localStorage.setItem("roles", JSON.stringify(roles))
+    }
+    useEffect(() => {
+        const saved = localStorage.getItem("roles")
+        if (saved) {
+            try {
+                setRole(JSON.parse(saved))
+            } catch {
+                setRole([])
+            }
+        }
+    }, [])
+    return <RoleContext.Provider value={{ role, setRole:setRoleLocalStorage }}>   {children}</RoleContext.Provider>
 
 }
 

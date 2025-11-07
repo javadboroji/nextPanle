@@ -36,7 +36,8 @@ function Sidebar() {
     },
     [],
   )
-
+  console.log(role);
+  
   const dashBoardItems: menusType = useMemo(() => [
     {
       id: "1",
