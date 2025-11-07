@@ -31,17 +31,40 @@ export interface IRoles extends ICreateAndUpdate {
   id: number;
   title: string;
   name: string;
-  persionName:string
+  persionName: string
+}
+export interface IProductCategory extends ICreateAndUpdate {
+  id: number;
+  title: string;
+  name: string;
+  persionName: string
 }
 
+export interface IProductTags extends ICreateAndUpdate {
+  id: number;
+  title: string;
+  name: string;
+  persionName: string
+}
 
-export interface IProduct{
-  id:number ,
-  title:string ,
-  count:number ,
-  price:number ,
-  isActive:boolean ,
-  description:string ,
-  image_url:string ,
+export interface IProduct {
+  id: number,
+  title: string,
+  count: number,
+  price: number,
+  description: string,
+  image_url: string,
+
+  code: number,
+  quantity: number,
+
+  model?: string,
+  status: string,
+  discontPrice: number,
+  barcode?: number,
+  rating: number,
+  tagId: number,
+  categoryId: number,
+  createBy: number
 
 }
