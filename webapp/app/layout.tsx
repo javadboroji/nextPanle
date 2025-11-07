@@ -16,12 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
+      
       <body className={`antialiased h-[100dvh] w-full`}>
         <ReactQueryProvider >
           <RoleProvider> {children}</RoleProvider>
         </ReactQueryProvider>
         <Toaster />
       </body>
+      <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/langs/fa.js"></script>
     </html>
   );
 }
