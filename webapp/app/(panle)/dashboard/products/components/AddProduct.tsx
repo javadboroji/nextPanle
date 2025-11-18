@@ -1,8 +1,11 @@
 import ModalLayout from '@/app/components/Modal/ModalLayout';
-import React from 'react'
+import React, { useEffect } from 'react'
 import useAddProductConatiner from '../hook/useAddProductConatiner';
 import FormTextFiled from '@/app/components/BaseFormItems/FormTextFiled/FormTextFiled';
 import FormSelectAnt from '@/app/components/BaseFormItems/FormSelect/FormSelectAnt';
+import { SubmitHandler } from 'react-hook-form';
+import { createProduct } from '../types';
+import { Button } from 'antd';
 interface addProductProps {
     open: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,10 +14,17 @@ interface addProductProps {
 
 const AddProduct: React.FC<addProductProps> = ({ open, setOpen }) => {
 
-    const { values, action } = useAddProductConatiner()
+    const { values, action } = useAddProductConatiner();
+    useEffect(() => {
+        console.log(values.errors);
+
+    }, [values.errors])
+
     return (
         <ModalLayout open={open} setOpen={setOpen}>
-            <form className="my-4" onSubmit={action.handleSubmit(action.onSubmit)}>
+            <form className="my-4" onSubmit={
+                action.handleSubmit(action.onSubmit)
+            }>
                 <div className="flex flex-wrap items-center p-4">
                     <div className="w-1/2 px-1">
                         <FormTextFiled
@@ -32,7 +42,7 @@ const AddProduct: React.FC<addProductProps> = ({ open, setOpen }) => {
                             name="price"
                             placeholder="قیمت    "
                             register={action.register}
-                            error={values.errors.price}
+                            error={values?.errors?.price}
                             classCu="mb-2 text-sm"
                         />
                     </div>
@@ -47,33 +57,43 @@ const AddProduct: React.FC<addProductProps> = ({ open, setOpen }) => {
                         />
                     </div>
 
-                    <div className="w-1/3 px-1">
+                    <div className="w-1/4 px-1">
                         <FormTextFiled
                             type="number"
                             name="code"
                             placeholder="کد "
                             register={action.register}
-                            error={values.errors.price}
+                            error={values.errors.code}
                             classCu="mb-2 text-sm"
                         />
                     </div>
-                    <div className="w-1/3 px-1">
+                    <div className="w-1/4 px-1">
                         <FormTextFiled
                             type='text'
                             name="model"
                             placeholder="مدل "
                             register={action.register}
-                            error={values.errors.price}
+                            error={values.errors.model}
                             classCu="mb-2 text-sm"
                         />
                     </div>
-                    <div className="w-1/3 px-1">
+                    <div className="w-1/4 px-1">
                         <FormTextFiled
                             type="number"
                             name="barcode"
                             placeholder="سریال بارکد "
                             register={action.register}
-                            error={values.errors.price}
+                            error={values.errors.barcode}
+                            classCu="mb-2 text-sm"
+                        />
+                    </div>
+                    <div className="w-1/4 px-1">
+                        <FormTextFiled
+                            type="number"
+                            name="quantity"
+                            placeholder=" تعداد "
+                            register={action.register}
+                            error={values.errors.quantity}
                             classCu="mb-2 text-sm"
                         />
                     </div>
@@ -112,15 +132,12 @@ const AddProduct: React.FC<addProductProps> = ({ open, setOpen }) => {
                         />
                     </div>
                 </div>
-                <div className="flex justify-end">
-                    <button
-                        type="submit"
-                        className="hover:cursor-pointer w-fit text-white bg-blue-500 block rounded-2xl py-2 px-8 my-4"
-                    >
-                        {" "}
-                        ثبت
-                    </button>
-                </div>
+                <Button htmlType='submit'
+                    className="hover:cursor-pointer w-fit text-white bg-blue-500 block rounded-2xl py-2 px-8 my-4"
+                >
+                    {" "}
+                    ثبت
+                </Button>
             </form>
         </ModalLayout>
     )

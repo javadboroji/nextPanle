@@ -48,23 +48,23 @@ export interface IProductTags extends ICreateAndUpdate {
 }
 
 export interface IProduct {
-  id: number,
+  id: number |null,
   title: string,
   count: number,
   price: number,
   description: string,
-  image_url: string,
+  image_url: string |null,
 
-  code: number,
-  quantity: number,
+  code?: number |null,
+  quantity: number |null,
 
   model?: string,
-  status: string,
-  discontPrice: number,
-  barcode?: number,
-  rating: number,
-  tagId: number,
-  categoryId: number,
-  createBy: number
+  status ?: string |null,
+  discontPrice ?: number,
+  barcode?: number |null,
+  rating ?: number |null,
+  tagId?: number |null,
+  categoryId?: number |null,
+  createBy : number |null
 
 }

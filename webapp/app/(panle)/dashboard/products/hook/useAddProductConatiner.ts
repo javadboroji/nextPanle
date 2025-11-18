@@ -3,8 +3,38 @@ import covertDataToselectOption from "@/app/helper/covertDataToselectOption";
 import { IProduct, IProductCategory, IProductTags } from "@/types";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 
-export type TProductInputs = Omit<IProduct, "id" | "image_url" | "createBy">
+
+const schema = yup.object({
+    title: yup.string().defined().required("عنوان اجباری است"),
+    count: yup.number().transform((value, originalValue) =>
+        originalValue === "" ? undefined : Number(originalValue)
+    ).required("تعداد اجباری است"),
+    price: yup.number().transform((value, originalValue) =>
+        originalValue === "" ? undefined : Number(originalValue)
+    ).required("قیمت اجباری است"),
+    barcode: yup.number().transform((value, originalValue) =>
+        originalValue === "" ? undefined : Number(originalValue)
+    ).required(" بارکد اجباری می باشد"),
+    categoryId: yup.number().transform((value, originalValue) =>
+        originalValue === "" ? undefined : Number(originalValue)
+    ),
+    code: yup.number().transform((value, originalValue) =>
+        originalValue === "" ? undefined : Number(originalValue)
+    ),
+    discontPrice: yup.number().transform((value, originalValue) =>
+        originalValue === "" ? undefined : Number(originalValue)
+    ),
+    model: yup.string().optional(),
+    quantity: yup.number().required("اجباری می باشد"),
+    //status: yup.string().required("اجباری می باشد"),
+    tagId: yup.number(),
+    description: yup.string(),
+
+});
+export type createProduct = yup.InferType<typeof schema>;
 const useAddProductConatiner = () => {
 
     const {
@@ -12,9 +42,17 @@ const useAddProductConatiner = () => {
         handleSubmit,
         control,
         formState: { errors },
-    } = useForm<TProductInputs>();
+    } = useForm<createProduct>({
+        resolver: yupResolver(schema as any)
 
-    const onSubmit: SubmitHandler<TProductInputs> = (data) => console.log(data);
+
+    });
+
+    const onSubmit: SubmitHandler<createProduct> = (data) => {
+
+        console.log(data, '%data%');
+
+    }
     /* ------------------------------- // Api Call ------------------------------ */
 
     const { data: categoryes } = useGetAllProductCategories()
@@ -22,7 +60,7 @@ const useAddProductConatiner = () => {
     const { data: tags } = useGetAllProductTags()
 
     const categoryOptions = covertDataToselectOption<IProductCategory>(categoryes, r => r.persionName, r => r.id)
-    const tagsOptions = covertDataToselectOption<IProductTags>(categoryes, r => r.persionName, r => r.id)
+    const tagsOptions = covertDataToselectOption<IProductTags>(tags, r => r.persionName, r => r.id)
 
 
 
