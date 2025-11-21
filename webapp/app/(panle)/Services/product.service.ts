@@ -1,10 +1,13 @@
+import toastColor from "@/app/helper/toastColor";
 import { getAxiosConfig } from "@/Services";
 import instance from "@/Services/instercepter";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
+import { toast } from "sonner";
 
 
 
-const getAllCategoryProduct = async () => { 
+const getAllCategoryProduct = async () => {
     return await instance.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/product-category/GetAll`,
         getAxiosConfig("json")
@@ -18,6 +21,35 @@ const getAllTagProduct = async () => {
     );
 };
 
+const getAllProducts = async (body) => {
+    return await instance.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/product/GetAllProduct`,
+        body,
+        getAxiosConfig("json")
+    );
+}
+
+
+const addProduct = async (data) => {
+    const formData = new FormData();
+    formData.append('productName', data.title)
+    formData.append('price', data.price)
+    formData.append('count', data.count)
+    formData.append('code', data.code)
+    formData.append('model', data.model)
+    formData.append('barcode', data.barcode)
+    formData.append('quantity', data.quantity)
+    formData.append('categoryId', data.categoryId)
+    formData.append('tagId', data.tagId)
+    formData.append('description', data.description)
+    formData.append('thumbnail', "")
+    return await instance.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/product/CreateProduct`,
+        formData,
+        getAxiosConfig("form")
+    );
+}
+/* --------------------------------- //Hooks -------------------------------- */
 export const useGetAllProductCategories = () => {
     return useQuery({
         queryKey: ["GetAllProductCategories"],
@@ -34,5 +66,28 @@ export const useGetAllProductTags = () => {
         select: (data) => {
             return data?.data?.data
         }
+    });
+}
+export const useGetAllProductWithPagnation = (body) => {
+    return useQuery({
+        queryKey: ["GetAllProduct"],
+        queryFn: () => getAllProducts(body),
+        select: (data) => {
+            return data?.data?.data
+        }
+    });
+}
+export const useAddNewProduct = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation<AxiosResponse<any>, Error, any, string[]>({
+        mutationFn: addProduct,
+        onSuccess: () => {
+            toast(" با موفقیت اضافه شد", { style: toastColor("sucess") });
+            queryClient.invalidateQueries({ queryKey: ['rolesWithPagnation'] })
+        },
+        onError: (err: any) => {
+            toast(" خطایی رخ داده است", { style: toastColor("error") });
+        },
     });
 }

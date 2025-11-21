@@ -1,4 +1,4 @@
-import { useGetAllProductCategories, useGetAllProductTags } from "@/app/(panle)/Services/product.service";
+import { useAddNewProduct, useGetAllProductCategories, useGetAllProductTags } from "@/app/(panle)/Services/product.service";
 import covertDataToselectOption from "@/app/helper/covertDataToselectOption";
 import { IProduct, IProductCategory, IProductTags } from "@/types";
 import { useEffect } from "react";
@@ -47,9 +47,9 @@ const useAddProductConatiner = () => {
 
 
     });
-
+    const { mutate } = useAddNewProduct()
     const onSubmit: SubmitHandler<createProduct> = (data) => {
-
+        mutate(data)
         console.log(data, '%data%');
 
     }
