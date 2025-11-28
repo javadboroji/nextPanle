@@ -32,6 +32,8 @@ const getAllProducts = async (body) => {
 
 const addProduct = async (data) => {
     const formData = new FormData();
+    console.log(data.productImage);
+
     formData.append('productName', data.title)
     formData.append('price', data.price)
     formData.append('count', data.count)
@@ -42,7 +44,7 @@ const addProduct = async (data) => {
     formData.append('categoryId', data.categoryId)
     formData.append('tagId', data.tagId)
     formData.append('description', data.description)
-    formData.append('thumbnail', "")
+    formData.append('thumbnail', data.productImage)
     return await instance.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/product/CreateProduct`,
         formData,
@@ -84,7 +86,7 @@ export const useAddNewProduct = () => {
         mutationFn: addProduct,
         onSuccess: () => {
             toast(" با موفقیت اضافه شد", { style: toastColor("sucess") });
-            queryClient.invalidateQueries({ queryKey: ['rolesWithPagnation'] })
+            queryClient.invalidateQueries({ queryKey: ['GetAllProduct'] })
         },
         onError: (err: any) => {
             toast(" خطایی رخ داده است", { style: toastColor("error") });

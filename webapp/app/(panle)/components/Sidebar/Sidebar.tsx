@@ -37,7 +37,7 @@ function Sidebar() {
     [],
   )
   console.log(role);
-  
+
   const dashBoardItems: menusType = useMemo(() => [
     {
       id: "1",
@@ -137,7 +137,17 @@ function Sidebar() {
         nested: true,
         auth: role?.some(r => ["admin"].includes(r)),
 
-      }]
+      },
+      {
+        id: "7-2",
+        name: " دسته بندی محصولات ",
+        link: "/dashboard/category",
+        icon: <BsCardChecklist size={24} />,
+        nested: true,
+        auth: role?.some(r => ["admin"].includes(r)),
+
+      }
+      ]
     },
 
 

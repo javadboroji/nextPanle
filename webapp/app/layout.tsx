@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       
       <body className={`antialiased h-[100dvh] w-full`}>
-        <ReactQueryProvider >
+        <ReactQueryProvider  >
           <RoleProvider> {children}</RoleProvider>
         </ReactQueryProvider>
         <Toaster />

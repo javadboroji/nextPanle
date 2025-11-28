@@ -1,7 +1,7 @@
 import { useAddNewProduct, useGetAllProductCategories, useGetAllProductTags } from "@/app/(panle)/Services/product.service";
 import covertDataToselectOption from "@/app/helper/covertDataToselectOption";
 import { IProduct, IProductCategory, IProductTags } from "@/types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -35,11 +35,13 @@ const schema = yup.object({
 
 });
 export type createProduct = yup.InferType<typeof schema>;
-const useAddProductConatiner = () => {
-
+const useAddProductConatiner = (setOpen: (open: boolean) => void ,open:boolean) => {
+    const [productImage, setProductImage] = useState([]);
+    const [imageList, setImageList] = useState([])
     const {
         register,
         handleSubmit,
+        reset,
         control,
         formState: { errors },
     } = useForm<createProduct>({
@@ -49,8 +51,12 @@ const useAddProductConatiner = () => {
     });
     const { mutate } = useAddNewProduct()
     const onSubmit: SubmitHandler<createProduct> = (data) => {
-        mutate(data)
-        console.log(data, '%data%');
+        mutate({ ...data, productImage }, {
+            onSuccess: () => {
+                setOpen(false) ,
+                reset()
+            }
+        })
 
     }
     /* ------------------------------- // Api Call ------------------------------ */
@@ -66,13 +72,18 @@ const useAddProductConatiner = () => {
 
 
 
-
+    useEffect(() => {
+      reset()
+    
+      
+    }, [open])
+    
     return {
         values: {
             errors, categoryOptions, tagsOptions
         },
         action: {
-            onSubmit, handleSubmit, control, register
+            onSubmit, handleSubmit, control, register, setProductImage, setImageList
         }
     }
 }

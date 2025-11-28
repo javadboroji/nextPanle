@@ -4,6 +4,7 @@ import ImgCrop from "antd-img-crop";
 import { Upload } from "antd";
 type UploaderProps = {
   setimagesUploaded: React.Dispatch<React.SetStateAction<any>>;
+  maxCount?:number
 };
 
 
@@ -40,7 +41,7 @@ function Uploader(props: UploaderProps) {
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
-        maxCount={1}
+        maxCount={props.maxCount?props.maxCount :1}
       >
        آپلود
       </Upload>
