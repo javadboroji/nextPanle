@@ -29,11 +29,17 @@ const getArticleApi = async (body: any) => {
         getAxiosConfig("json")
     );
 }
+const getAllArticleApi = async () => {
+    return await instance.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/articles/getAll`,
+        getAxiosConfig("json")
+    );
+}
 const getArticleWithUrl = async (url: string) => {
     return await instance.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/articles/FetchArticel?url=` + url,
         getAxiosConfig("json")
- );
+    );
 }
 export const useAddArticle = () => {
     const queryClient = useQueryClient();
@@ -60,12 +66,20 @@ export const useGetArticleWithPagnation = (body) => {
         }
     });
 };
-
+export const useGetArticle = () => {
+    return useQuery({
+        queryKey: ["useGetArticle"],
+        queryFn: () => getAllArticleApi(),
+        select: (data) => {
+            return data?.data?.data
+        }
+    });
+};
 export const useGetArticleWithUrl = (url) => {
     return useQuery({
         queryKey: ["useGetArticleWithUrl", url],
         queryFn: () => getArticleWithUrl(url),
-        enabled:false,
+        enabled: false,
         select: (data) => {
             return data?.data?.data
         }

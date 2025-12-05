@@ -1,37 +1,33 @@
-interface IetchProps {
-    url:string, 
-    headers?:any ,
-    body?:any,
-    method:"GET"|"POST"|"PUT"|"DELETE",
-  }
-  export const fnFetchSsr = async (props: IetchProps) => {
-  
-    // Combine headers and other options
-    const mergedOptions = {
-      method: props.method,
-      body: JSON.stringify(props.body),
-      headers: {
-        ...props.headers,
-      },
-    };
-  
-    try {
-      const response = await fetch(props.url, mergedOptions);
-  
-      if (!response.ok) {
-        // Handle specific error codes or conditions here
-        
-         if (response.status === 404) {
-          throw new Error("Not found");
-        } else {
-          throw new Error("Server error");
-        }
-      }
-  
-      return response.json();
-    } catch (error) {
-      // Handle general errors here
-      console.error("Error fetching data:", error);
-      throw error; // Re-throw the error for further handling
-    }
+export interface IetchProps {
+  url: string,
+  headers?: any,
+  body?: any,
+  method: "GET" | "POST" | "PUT" | "DELETE",
+}
+export const fnFetchSsr = async (props: IetchProps) => {
+  const mergedOptions: RequestInit = {
+    method: props.method,
+    headers: {
+      "Content-Type": "application/json",
+      ...props.headers,
+    },
+    cache: "no-store",
   };
+
+  if (props.method !== "GET" && props.body) {
+    mergedOptions.body = JSON.stringify(props.body);
+  }
+
+  try {
+    const response = await fetch(props.url, mergedOptions);
+
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};

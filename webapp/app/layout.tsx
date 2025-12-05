@@ -22,8 +22,8 @@ export default function RootLayout({
           <RoleProvider> {children}</RoleProvider>
         </ReactQueryProvider>
         <Toaster />
-      </body>
       <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/langs/fa.js"></script>
+      </body>
     </html>
   );
 }
