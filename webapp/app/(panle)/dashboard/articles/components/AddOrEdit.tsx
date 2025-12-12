@@ -68,7 +68,7 @@ const AddOrEdit: React.FC<AddOrEditProps> = ({ open, setOpen }) => {
 
                 {/* left form */}
                 <div className="w-full md:w-1/2 bg-white rounded-xl p-4 shadow-md ">
-                    <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
 
                         <FormCheckBox
                             control={control}
@@ -83,7 +83,14 @@ const AddOrEdit: React.FC<AddOrEditProps> = ({ open, setOpen }) => {
                             register={register}
                             error={errors.title}
                         />
+                        <FormTextFiled
+                            type="text"
+                            name="summary"
+                            placeholder="توضیحات کوتاه"
+                            register={register}
+                            error={errors.title}
 
+                        />
                         <TinyEditore editorRef={editorRef} />
 
                         <Uploader setimagesUploaded={setThumbnail} />
@@ -124,7 +131,6 @@ const AddOrEdit: React.FC<AddOrEditProps> = ({ open, setOpen }) => {
                             <div className="w-full flex flex-col gap-4">
                                 {/* عنوان مقاله */}
                                 <h3 className="text-2xl font-semibold text-gray-800">{data.title}</h3>
-
                                 {/* متن مقاله */}
                                 <div className="overflow-y-auto max-h-[300px] pr-2 text-gray-700 leading-7 whitespace-pre-line border rounded-lg p-3 bg-white shadow-sm">
                                     {Array.isArray(data.content)

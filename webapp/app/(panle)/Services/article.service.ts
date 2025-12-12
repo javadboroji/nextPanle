@@ -10,6 +10,7 @@ import { toast } from "sonner";
 const addArticle = async (data) => {
     const formData = new FormData();
     formData.append('title', data.title)
+    formData.append('summary', data.summary)
     formData.append('content', data.content)
     formData.append('published', data.published)
     formData.append('thumbnail', data.thumbnail)

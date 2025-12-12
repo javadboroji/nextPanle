@@ -4,7 +4,8 @@ export interface IetchProps {
   body?: any,
   method: "GET" | "POST" | "PUT" | "DELETE",
 }
-export const fnFetchSsr = async (props: IetchProps) => {
+export async function fnFetchSsr<T = any>(props: IetchProps): Promise<T> {
+
   const mergedOptions: RequestInit = {
     method: props.method,
     headers: {
@@ -22,12 +23,19 @@ export const fnFetchSsr = async (props: IetchProps) => {
     const response = await fetch(props.url, mergedOptions);
 
     if (!response.ok) {
-      throw new Error(`Error ${response.status}`);
+      return {
+        error: true,
+        data: null,
+        message: "FETCH_FAILED",
+      } as T
     }
 
-    return response.json();
+    return response.json() as Promise<T>;
   } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
+    return {
+      error: true,
+      data: null,
+      message: "FETCH_FAILED",
+    } as T
   }
 };
