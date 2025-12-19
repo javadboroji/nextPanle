@@ -19,7 +19,6 @@ function AddOrEdit(props: TypeAddOrEditProps) {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<TypeCategory>();
     const onSubmit: SubmitHandler<TypeCategory> = (data) => mutate(data, { onSuccess: () => setOpen(false) })

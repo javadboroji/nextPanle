@@ -1,5 +1,5 @@
 "use client"
-import React, { Profiler, ReactNode, useCallback, useMemo, useState } from 'react';
+import React, {  ReactNode, useCallback, useMemo, useState } from 'react';
 import { FaUsers } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { MdDashboard } from "react-icons/md";
@@ -8,7 +8,6 @@ import { GrArticle } from "react-icons/gr";
 import { IoIosLock } from "react-icons/io";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { BsCardChecklist } from "react-icons/bs";
-import { getAuthClient } from '@/lib/auth';
 import SidebarItem from './components/SidebarItem';
 import { useRole } from '../../context/RoleContext';
 export interface menuType {
@@ -36,7 +35,6 @@ function Sidebar() {
     },
     [],
   )
-  console.log(role);
 
   const dashBoardItems: menusType = useMemo(() => [
     {

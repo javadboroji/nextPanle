@@ -1,6 +1,6 @@
 import { useAddNewProduct, useGetAllProductCategories, useGetAllProductTags } from "@/app/(panle)/Services/product.service";
 import covertDataToselectOption from "@/app/helper/covertDataToselectOption";
-import { IProduct, IProductCategory, IProductTags } from "@/types";
+import {  IProductCategory, IProductTags } from "@/types";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from 'yup';
@@ -80,7 +80,7 @@ const useAddProductConatiner = (setOpen: (open: boolean) => void ,open:boolean) 
     
     return {
         values: {
-            errors, categoryOptions, tagsOptions
+            errors, categoryOptions, tagsOptions ,imageList
         },
         action: {
             onSubmit, handleSubmit, control, register, setProductImage, setImageList

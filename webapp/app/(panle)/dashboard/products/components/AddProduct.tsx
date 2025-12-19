@@ -1,11 +1,8 @@
 import ModalLayout from '@/app/components/Modal/ModalLayout';
-import React, { useEffect } from 'react'
+import React from 'react'
 import useAddProductConatiner from '../hook/useAddProductConatiner';
 import FormTextFiled from '@/app/components/BaseFormItems/FormTextFiled/FormTextFiled';
 import FormSelectAnt from '@/app/components/BaseFormItems/FormSelect/FormSelectAnt';
-import { SubmitHandler } from 'react-hook-form';
-import { createProduct } from '../types';
-import { Button } from 'antd';
 import Uploader from '@/app/components/Uploader/Uploader';
 interface addProductProps {
     open: boolean;

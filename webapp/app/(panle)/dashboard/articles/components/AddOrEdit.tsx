@@ -8,9 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import TinyEditore from './TinyEditore';
 import TextField from '@/app/components/BaseFormItems/FormTextFiled/TextField';
 import SpLoading from '@/app/components/Loading/SpLoading';
-import { Typography } from 'antd';
 import { useDebounce } from '@/app/hooks/useDebunce';
-import Image from 'next/image';
 
 interface AddOrEditProps {
     open: boolean,
@@ -29,7 +27,6 @@ const AddOrEdit: React.FC<AddOrEditProps> = ({ open, setOpen }) => {
     const {
         register,
         handleSubmit,
-        watch,
         control,
         reset,
         formState: { errors },

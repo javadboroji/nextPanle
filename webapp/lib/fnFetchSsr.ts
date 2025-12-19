@@ -21,7 +21,7 @@ export async function fnFetchSsr<T = any>(props: IetchProps): Promise<T> {
 
   try {
     const response = await fetch(props.url, mergedOptions);
-
+    console.log('#fnFetchSsr ERROR', response);
     if (!response.ok) {
       return {
         error: true,
@@ -32,6 +32,8 @@ export async function fnFetchSsr<T = any>(props: IetchProps): Promise<T> {
 
     return response.json() as Promise<T>;
   } catch (error) {
+    console.log('#fnFetchSsr ERROR', error);
+
     return {
       error: true,
       data: null,

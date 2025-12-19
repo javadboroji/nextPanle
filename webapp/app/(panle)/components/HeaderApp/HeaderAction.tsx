@@ -7,10 +7,7 @@ import { MdEmail } from "react-icons/md";
 import UserProfile from "./UserProfile";
 
 function HeaderAction() {
-  const user = {
-    userName: "جواد بروجی",
-    email: "javadboroji2222@gmail.com",
-  };
+
   const [open, setOpen] = useState(false)
   return (
     <div className={"flex items-center  justify-between w-[95%]"}>

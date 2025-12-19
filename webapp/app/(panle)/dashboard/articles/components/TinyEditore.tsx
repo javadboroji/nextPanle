@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React  from 'react'
 import { Editor } from '@tinymce/tinymce-react';
 
 type TinyEditoreProps = {
@@ -6,11 +6,7 @@ type TinyEditoreProps = {
 }
 const TinyEditore: React.FC<TinyEditoreProps> = ({ editorRef }) => {
 
-    const log = () => {
-        if (editorRef.current) {
-            console.log(editorRef.current.getContent());
-        }
-    };
+
     return (
         <>
             <Editor

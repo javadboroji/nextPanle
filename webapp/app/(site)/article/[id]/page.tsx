@@ -3,6 +3,7 @@ import { ArticlesDetai } from '@/app/page';
 import { fnFetchSsr, IetchProps } from '@/lib/fnFetchSsr';
 import Image from 'next/image';
 import React from 'react'
+import CommentForm from './components/CommentArticle';
 type articleSingleData = ArticlesDetai & {
     content: string
 }
@@ -26,10 +27,11 @@ async function articlePage({ params }) {
                         <Image src={`${process.env.BASE_URL}/${articleData.data.thumbnail}`} alt={articleData.data.title} fill className="object-cover" />
                     </div>
                     <div
-                        className="article-content py-2 text-justify  leading-14 text-xl"
+                        className="article-content py-2 text-justify  leading-14 text-lg"
                         dangerouslySetInnerHTML={{ __html: articleData.data.content }}
                     />
                 </div>
+                    <CommentForm id={id}/>
             </div>
         </DataFetchLayout>
     )

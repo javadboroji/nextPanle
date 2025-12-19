@@ -23,7 +23,7 @@ const useArticleContainer = () => {
             title: "منتشرشده",
             dataIndex: "published",
             key: "published",
-            render: (text: any, record: any, index: number) => record.published ? "منتشر شده" : "درانتظار انتشار",
+            render: (record: any) => record.published ? "منتشر شده" : "درانتظار انتشار",
         },
         {
             title: "تاریخ ایجاد",

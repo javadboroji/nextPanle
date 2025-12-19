@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import HeaderApp from "../components/HeaderApp/HeaderApp";
-import { RoleProvider } from "../context/RoleContext";
 interface LayoutProps {
   children: React.ReactNode;
 }

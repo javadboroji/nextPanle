@@ -1,5 +1,5 @@
 "use client"
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { menuType } from '../Sidebar'
 import { IoIosArrowDown } from 'react-icons/io'
 import { usePathname } from 'next/navigation'
