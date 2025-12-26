@@ -9,6 +9,7 @@ export interface errosForm {
 }
 interface IProps {
   name: string;
+  multi?: boolean
   placeholder: string;
   type: "password" | "text" | "number";
   register: UseFormRegister<any>;
@@ -25,11 +26,22 @@ const FormTextFiled: React.FC<IProps> = ({
   classCu,
   validation,
   error,
+  multi
 }) => {
   return (
     <div className="flex flex-col w-full relative py-3  ">
-        <Typography.Text className="!text-gray-400"> {placeholder}</Typography.Text>
-      <input
+      <Typography.Text className="!text-gray-400"> {placeholder}</Typography.Text>
+      {multi ? (
+        <textarea
+          className={`border-[1px] bg-gray-50 focus-visible:outline-blue-200  
+      dark:border-gray-700 dark:bg-midnight-ndigo dark:text-white dark:focus-visible:outline-blue-900
+      ${error ? "border-red-600" : "border-gray-200"}
+      rounded-[10px] py-3 px-2 min-h-28 resize-y
+      ${classCu}`}
+          {...register(name, validation)}
+          name={name}
+        />
+      ) : <input
         className={`border-[1px] bg-gray-50 focus-visible:outline-blue-200  
           dark:border-gray-700 dark:bg-midnight-ndigo dark:text-white dark:focus-visible:outline-blue-900  
            ${error ? 'border-red-600' : 'border-gray-200 '} 
@@ -39,7 +51,9 @@ const FormTextFiled: React.FC<IProps> = ({
         {...register(name, validation)}
         name={name}
         type={type}
-      />
+
+      />}
+
       {error && <p className="text-red-600 text-xs absolute bottom-0 right-0">{error?.message}</p>}
     </div>
   );

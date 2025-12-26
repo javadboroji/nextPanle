@@ -32,7 +32,7 @@ const getAllProducts = async (body) => {
 
 const addProduct = async (data) => {
     const formData = new FormData();
-    console.log(data.productImage);
+    console.log(data.imageList);
 
     formData.append('productName', data.title)
     formData.append('price', data.price)
@@ -45,11 +45,17 @@ const addProduct = async (data) => {
     formData.append('tagId', data.tagId)
     formData.append('description', data.description)
     formData.append('thumbnail', data.productImage)
+    if (data.imageList && data.imageList.length > 0) {
+        data.imageList.forEach((image: any ,i) => {
+            formData.append(`images`, image)
+        })
+    }
     return await instance.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/product/CreateProduct`,
         formData,
         getAxiosConfig("form")
     );
+
 }
 /* --------------------------------- //Hooks -------------------------------- */
 export const useGetAllProductCategories = () => {

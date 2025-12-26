@@ -22,7 +22,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
 
             <input
                 {...rest}
-                ref={ref}           // ⬅ اینجا اجازه استفاده از ref
+                ref={ref}         
                 value={inpValue}
                 onChange={onchangeInput}
                 className={`border-[1px] bg-gray-50 focus-visible:outline-blue-200  

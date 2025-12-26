@@ -141,7 +141,9 @@ const AddProduct: React.FC<addProductProps> = ({ open, setOpen }) => {
                                 placeholder="توضیحات"
                                 register={action.register}
                                 error={values.errors.description}
+                                multi={true}
                                 classCu="text-sm"
+
                             />
                         </div>
                     </div>

@@ -4,17 +4,22 @@ import ImgCrop from "antd-img-crop";
 import { Upload } from "antd";
 type UploaderProps = {
   setimagesUploaded: React.Dispatch<React.SetStateAction<any>>;
-  maxCount?:number
+  maxCount?: number
 };
 
 
 function Uploader(props: UploaderProps) {
   const [fileList, setFileList] = useState<any>();
 
-  const onChange: UploadProps["onChange"] = ({ file ,fileList}) => {
+  const onChange: UploadProps["onChange"] = ({ file, fileList }) => {
     setFileList(fileList);
-    props.setimagesUploaded(file.originFileObj)
-    
+    if (props.maxCount && props.maxCount > 1) {
+      const imagesArray = fileList.map((file) => file.originFileObj);
+      props.setimagesUploaded(imagesArray)
+    } else {
+      props.setimagesUploaded(file.originFileObj)
+    }
+
   };
 
   const onPreview = async (file: UploadFile) => {
@@ -41,9 +46,9 @@ function Uploader(props: UploaderProps) {
         fileList={fileList}
         onChange={onChange}
         onPreview={onPreview}
-        maxCount={props.maxCount?props.maxCount :1}
+        maxCount={props.maxCount ? props.maxCount : 1}
       >
-       آپلود
+        آپلود
       </Upload>
     </ImgCrop>
   );

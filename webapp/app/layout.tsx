@@ -23,6 +23,7 @@ export default function RootLayout({
         </ReactQueryProvider>
         <Toaster />
       <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/langs/fa.js"></script>
+      <link rel="manifest" href="/manifest.json" />
       </body>
     </html>
   );

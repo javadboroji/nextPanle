@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+const withPWA = require("next-pwa")({
+   dest: "public",
+   register: true,
+   skipWaiting: true,
+   disable: process.env.NODE_ENV === "development",
+});
+const nextConfig: NextConfig = withPWA({
    images: {
       domains: ['www.google.com', 'sourceiran.com', 'localhost',],
 
@@ -14,6 +19,6 @@ const nextConfig: NextConfig = {
       // اگر خطای TypeScript هم داری (اختیاری)
       ignoreBuildErrors: true,
    },
-};
+});
 
 export default nextConfig;

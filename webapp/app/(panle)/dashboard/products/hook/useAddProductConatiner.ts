@@ -51,7 +51,8 @@ const useAddProductConatiner = (setOpen: (open: boolean) => void ,open:boolean) 
     });
     const { mutate } = useAddNewProduct()
     const onSubmit: SubmitHandler<createProduct> = (data) => {
-        mutate({ ...data, productImage }, {
+       
+        mutate({ ...data, productImage ,imageList }, {
             onSuccess: () => {
                 setOpen(false) ,
                 reset()
@@ -59,6 +60,11 @@ const useAddProductConatiner = (setOpen: (open: boolean) => void ,open:boolean) 
         })
 
     }
+    useEffect(() => {
+    console.log(productImage ,'#!');
+        
+    }, [productImage])
+    
     /* ------------------------------- // Api Call ------------------------------ */
 
     const { data: categoryes } = useGetAllProductCategories()
@@ -71,7 +77,7 @@ const useAddProductConatiner = (setOpen: (open: boolean) => void ,open:boolean) 
 
 
 
-
+    
     useEffect(() => {
       reset()
     
