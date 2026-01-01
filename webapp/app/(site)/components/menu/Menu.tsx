@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { FaShoppingBag } from "react-icons/fa";
+import { SlBasket } from "react-icons/sl";
+import useAddToBasket from "@/app/store/basket";
 
 type NavItem = {
     label: string;
@@ -26,6 +29,7 @@ const NAV_ITEMS: NavItem[] = [
 
 function useActivePath() {
     const pathname = usePathname();
+
     return (href?: string) => {
         if (!href) return false;
         // exact or prefix match for parent items
@@ -37,6 +41,8 @@ export default function Navigation() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState<number | null>(null);
     const isActive = useActivePath();
+    const { products } = useAddToBasket();
+
 
     return (
         <nav className="bg-white border-b border-gray-200">
@@ -96,6 +102,10 @@ export default function Navigation() {
                     {/* Actions & mobile toggle */}
                     <div className="flex items-center gap-4">
                         <div className="hidden md:flex md:items-center md:gap-3">
+                            <button className="relative">
+                                <span className="absolute left-1 -top-1 bg-red-50 rounded-full w-4 h-4 flex justify-center items-center text-red-400 text-xs"> {products.length}</span>
+                                <Link href={"/cart"}><SlBasket size={24} className="mx-2" /></Link>
+                            </button>
                             <Link href="/login" className="text-sm px-3 py-2 rounded-md hover:bg-gray-100">
                                 ورود
                             </Link>

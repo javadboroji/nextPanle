@@ -4,7 +4,7 @@ export interface IProduct {
   code: number;
   categoryId: number;
   tagId: number;
-  price: string;
+  price: number;
   quantity: number;
   brand: string | null;
   model: string | null;

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { IProduct } from "../types";
+import useAddToBasket from "@/app/store/basket";
 interface IAddProductToBasckate {
   data: IProduct;
 }
@@ -10,52 +11,40 @@ const AddProductToBasckate: React.FC<IAddProductToBasckate> = ({ data }) => {
   // const [prductBasket, setPrductBasket] = useState<ProductBasket | undefined>(
   //   undefined
   // );
-  // const { setProductBasket, incrementProductCount, products } =
-  //   useAddToBasket();
+  const { setProductBasket, incrementProductCount, products, updateStore } =
+    useAddToBasket();
   // const { sizeSelect, colorSelect } = useSizeAndColor();
   const addToBaskate = () => {
-    // const productSumury = {
-    //   image: data.image,
-    //   title: data.title,
-    //   price: data.price,
-    //   _id: data._id,
-    //   size: sizeSelect,
-    //   color: colorSelect,
-    //   count: count,
-    // };
 
-    // const basketHasProduct = products.some(
-    //   (item) => item._id === productSumury._id
-    // );
-    // if(count>0){
-      
-    //   if (!basketHasProduct) setProductBasket(productSumury);
-    //   if (basketHasProduct)
-    //     incrementProductCount(productSumury?._id ?? "", count);
-    // }
+
+
+
+    setProductBasket(data);
+
+
   };
 
 
 
-  const changeCount = (type: string) => {
+  const changeCount = (type: string, id: number, count: number) => {
     if (type === "increase") {
-      setCount((prev) => prev + 1);
+      updateStore(id, count + 1);
     } else {
-      setCount((prev) => (prev > 0 ? prev - 1 : 0));
+      updateStore(id, count - 1);
     }
   };
   return (
     <div className="flex items-center  border-t-2 border-ec-gray py-4">
       <div className=" flex items-center justify-between bg-ec-gray rounded-full w-[30%] lg:w-[20%]">
         <button
-          onClick={() => changeCount("decrease")}
+          onClick={() => changeCount("decrease", data.id, count)}
           className="font-bold p-1 text-2xl w-fit ms-2"
         >
           -
         </button>
         <span className="font-bold text-xl w-fit">{count}</span>
         <button
-          onClick={() => changeCount("increase")}
+          onClick={() => changeCount("increase", data.id, count)}
           className="font-bold p-1 text-2xl w-fit me-2"
         >
           +
@@ -65,7 +54,7 @@ const AddProductToBasckate: React.FC<IAddProductToBasckate> = ({ data }) => {
         className="flex-1 bg-black rounded-full p-2 text-white ms-4"
         onClick={() => addToBaskate()}
       >
-      افزودن به سبد خرید 
+        افزودن به سبد خرید
       </button>
     </div>
   );

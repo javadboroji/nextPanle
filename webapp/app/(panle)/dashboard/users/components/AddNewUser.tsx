@@ -1,6 +1,6 @@
 import ModalLayout from "@/app/components/Modal/ModalLayout";
 import { IRoles } from "@/types";
-import React from "react";
+import React, { useEffect } from "react";
 import * as yup from 'yup';
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormTextFiled from "@/app/components/BaseFormItems/FormTextFiled/FormTextFiled";
@@ -9,29 +9,34 @@ import covertDataToselectOption from "@/app/helper/covertDataToselectOption";
 import { useRegister } from "@/app/(panle)/Services/User";
 import FormSelectAnt from "@/app/components/BaseFormItems/FormSelect/FormSelectAnt";
 import { yupResolver } from "@hookform/resolvers/yup";
+import toastColor from "@/app/helper/toastColor";
+import { toast } from "sonner";
 
 
-interface adduserProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-type addUserInputs = {
+export type addUserInputs = {
   name: string;
   email: string;
-  role: string;
+  roleId: number;
   status?: number;
   password: string;
 };
+interface adduserProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
+  initialData: null | addUserInputs
+}
+
 
 const schema = yup.object({
   name: yup.string().notRequired(),
   password: yup.string().required("پسورد   اجباری می باشد"),
-  role: yup.string().required("نقش اجباری می باشد"),
+  roleId: yup.number().required("نقش اجباری می باشد"),
   // status: yup.number().notRequired(),
   email: yup.string().email().required("ایمیل اجباری می باشد"),
 });
 
-const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
+const AddNewUser: React.FC<adduserProps> = ({ open, setOpen, initialData }) => {
 
   const { data: roles } = useGetRoles();
 
@@ -39,14 +44,33 @@ const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
 
   const roleOptions = covertDataToselectOption<IRoles>(roles?.data?.data ?? [], r => r.persionName, r => r.id)
 
+
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
+
   } = useForm<addUserInputs>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: "",
+      email: "",
+      roleId: 0,
+      password: ""
+    }
   });
+  useEffect(() => {
+    if (initialData) {
+      reset(initialData)
+    }
+  }, [initialData])
+
+
+
+
+
   const onSubmit: SubmitHandler<addUserInputs> = (data) => mutate(data, {
     onSuccess: () => {
       setOpen(false)
@@ -80,13 +104,13 @@ const AddNewUser: React.FC<adduserProps> = ({ open, setOpen }) => {
             </div>
             <div className="w-1/3 px-1">
               <FormSelectAnt
-                name="role"
+                name="roleId"
                 //register={register}
                 control={control}
                 className=" p-4"
                 placeholder="نقش"
                 SelectItems={roleOptions ?? []}
-                error={errors.role}
+                error={errors.roleId}
 
               />
             </div>

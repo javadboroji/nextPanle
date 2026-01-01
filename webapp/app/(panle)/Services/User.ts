@@ -3,7 +3,7 @@ import { getAxiosConfig } from "@/Services";
 import instance from "@/Services/instercepter";
 import { IrequestBody, userRegister } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner"
 import { useRole } from "../context/RoleContext";
@@ -35,6 +35,12 @@ const getAllUser = async ({ queryKey }: { queryKey: [string, IrequestBody] }) =>
     getAxiosConfig("json")
   );
 };
+const deleteUser = async (user: number) => {
+  return await instance.delete(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/delete/${user}`,
+    getAxiosConfig("json")
+  );
+};
 /****************************Hocks************************************* */
 export const useLogin = () => {
   const router = useRouter();
@@ -49,7 +55,7 @@ export const useLogin = () => {
       //save token in cookie
       document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24}`;
       //save Roles in context
-      const decode: Idecode = jwtDecode(token); 
+      const decode: Idecode = jwtDecode(token);
       setRole([decode.role as any])
       router.push("/dashboard");
     },
@@ -71,8 +77,15 @@ export const useRegister = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] })
     },
-    onError: (error) => {
-      console.log(error);
+    onError: (error: AxiosError) => {
+      ((error?.response?.data as any)?.message).forEach(element => {
+        toast(element || "خطا رخ داد", {
+          style: toastColor("error"),
+          duration:5000
+        })
+      });
+
+
     },
   });
 };
@@ -86,5 +99,17 @@ export const useGetAllUsers = (requestBody: IrequestBody) => {
 
 
 
+  });
+};
+export const useDeleteUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation<AxiosResponse<any>, Error, any, string[]>({
+    mutationFn: deleteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 };

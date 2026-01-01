@@ -3,6 +3,7 @@ import React from 'react'
 import { IProduct } from '../types'
 import { Button } from 'antd'
 import Link from 'next/link'
+import AddToBasketBtn from './AddToBasketBtn'
 
 type ProductCardProps = {
   product: IProduct
@@ -24,9 +25,7 @@ function ProductCard({ product }: ProductCardProps) {
       <div className='flex items-center py-2'>
         <span className=' text-lg '> قیمت  : {product.price}   تومان </span>
       </div>
-      <button className='rounded-full p-2 w-full bg-black text-white'>
-        افزودن به سبد خرید
-      </button>
+      <AddToBasketBtn product={product} />
     </div>
   )
 }
